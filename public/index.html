@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="it"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#16324f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg">
+<link rel="stylesheet" href="./style.css">
+<title>C Pocket Lab — Fase 1</title>
+<h1>C Pocket Lab — banco di prova</h1>
+<p>Vero Clang locale. Testato su Chrome Windows anche offline; verifica Safari iPhone ancora necessaria.</p>
+<label for="engine">Compilatore</label>
+<select id="engine"><option value="binji">binji/wasm-clang — 58 MiB</option><option value="browsercc">browsercc — 90 MiB</option></select>
+<label for="source">Codice C</label>
+<textarea id="source" rows="12" spellcheck="false" autocapitalize="off" autocorrect="off">#include &lt;stdio.h&gt;
+
+int main(void) {
+    int n;
+    printf("Inserisci un numero:\n");
+    if (scanf("%d", &amp;n) != 1) return 1;
+    printf("Il doppio e' %d\n", n * 2);
+    return 0;
+}</textarea>
+<label for="stdin">Input (disponibile al programma prima dell’avvio)</label>
+<textarea id="stdin" rows="2" spellcheck="false" autocapitalize="off" autocorrect="off">21</textarea>
+<button id="compile">Compila ed esegui</button>
+<button id="stop" disabled>Arresta</button>
+<pre id="output" aria-label="Output programma" tabindex="0">Output del programma</pre>
+<hr>
+<button id="run">Esegui test C</button>
+<button id="offline">Prepara offline</button>
+<button id="export" disabled>Esporta report JSON</button>
+<pre id="status" role="status">Pronto per le prove. Prepara offline prima della modalità aereo.</pre>
+<script type="module" src="./app.js"></script>
+</html>

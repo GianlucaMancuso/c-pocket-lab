@@ -1,0 +1,5 @@
+node_modules/
+.downloads/
+__pycache__/
+.browser-test-profile/
+.chrome-probe/

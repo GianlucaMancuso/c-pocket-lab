@@ -1,0 +1,20 @@
+[
+  {
+    "name": "browsercc",
+    "version": "0.1.1",
+    "integrity": "sha512-zKSm2b10XjqRBPkY67rS5FK+YgcXd5CH2GRVwyK2+f7EOQRmHR0IN2lQCvJZQfTytSFbwFmlIpZaxSMFcE+jxw==",
+    "tarball": "https://registry.npmjs.org/browsercc/-/browsercc-0.1.1.tgz",
+    "patch": "Move language flags before input filename in getCompilerInvocation: -x c must apply to main.c instead of subsequent inputs."
+  },
+  {
+    "name": "@bjorn3/browser_wasi_shim",
+    "version": "0.4.2",
+    "integrity": "sha512-/iHkCVUG3VbcbmEHn5iIUpIrh7a7WPiwZ3sHy4HZKZzBdSadwdddYDZAII2zBvQYV0Lfi8naZngPCN7WPHI/hA==",
+    "tarball": "https://registry.npmjs.org/@bjorn3/browser_wasi_shim/-/browser_wasi_shim-0.4.2.tgz"
+  },
+  {
+    "name": "binji/wasm-clang",
+    "commit": "648c4a89997a351eef75cdaec3ef5b89d4937dec",
+    "patch": "Expose API.App for structured execution and exit capture; upstream copy retained."
+  }
+]

@@ -1,0 +1,167 @@
+{
+  "engine": "browsercc",
+  "date": "2026-10-20T06:11:25.953Z",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+  "standalone": false,
+  "online": true,
+  "results": [
+    {
+      "id": "printf",
+      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",277061);return 0;}",
+      "stdin": "",
+      "expected": "hello 277061\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "hello 277061\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "",
+      "ms": 538.1000000000931
+    },
+    {
+      "id": "scanf",
+      "source": "#include <stdio.h>\nint main(void){int n;char s[16];if(scanf(\"%d %15s\",&n,s)!=2)return 1;printf(\"%d %s\\n\",n+1,s);return 0;}",
+      "stdin": "17 lab\n",
+      "expected": "18 lab\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "18 lab\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "",
+      "ms": 590.7000000001863
+    },
+    {
+      "id": "loops-functions-arrays",
+      "source": "#include <stdio.h>\nint sum(const int *a,int n){int s=0;for(int i=0;i<n;i++)s+=a[i];return s;}\nint main(void){int a[]={2,4,6};int n=0;while(n<3)n++;do{n--;}while(n>3);printf(\"%d %d\\n\",sum(a,3),n);return 0;}",
+      "stdin": "",
+      "expected": "12 2\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "12 2\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "",
+      "ms": 593.3999999999069
+    },
+    {
+      "id": "strings-pointers-struct",
+      "source": "#include <stdio.h>\n#include <string.h>\nstruct Item{int value;char name[16];};\nint main(void){struct Item a={7,\"pocket\"};struct Item *p=&a;char b[32];strcpy(b,p->name);strcat(b,\" C\");p->value+=2;printf(\"%s %d %lu\\n\",b,a.value,(unsigned long)strlen(b));return 0;}",
+      "stdin": "",
+      "expected": "pocket C 9 8\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "pocket C 9 8\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "",
+      "ms": 669.6000000000931
+    },
+    {
+      "id": "malloc-free",
+      "source": "#include <stdio.h>\n#include <stdlib.h>\nint main(void){for(int k=0;k<32;k++){int *p=malloc(256*sizeof *p);if(!p)return 1;for(int i=0;i<256;i++)p[i]=i;if(p[255]!=255)return 2;free(p);}printf(\"alloc ok\\n\");return 0;}",
+      "stdin": "",
+      "expected": "alloc ok\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "alloc ok\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "",
+      "ms": 592.3999999999069
+    },
+    {
+      "id": "files",
+      "source": "#include <stdio.h>\n#include <string.h>\nint main(void){FILE *f=fopen(\"data.txt\",\"w\");if(!f)return 1;if(fprintf(f,\"%d %s\\n\",73,\"pocket\")!=10)return 2;if(fclose(f))return 3;f=fopen(\"data.txt\",\"r\");if(!f)return 4;int n=0;char s[16];if(fscanf(f,\"%d %15s\",&n,s)!=2)return 5;if(fclose(f))return 6;if(n!=73||strcmp(s,\"pocket\"))return 7;printf(\"%d %s\\n\",n,s);return 0;}",
+      "stdin": "",
+      "expected": "73 pocket\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "73 pocket\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {
+        "data.txt": "73 pocket\n"
+      },
+      "diagnostics": "",
+      "ms": 608.2000000001863
+    },
+    {
+      "id": "scanf-eof",
+      "source": "#include <stdio.h>\nint main(void){int n;printf(\"%d\\n\",scanf(\"%d\",&n)==EOF);return 0;}",
+      "stdin": "",
+      "expected": "1\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "1\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "",
+      "ms": 607.3999999999069
+    },
+    {
+      "id": "compile-error",
+      "source": "int main(void){ this is invalid C; }",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "compileError": true,
+      "diagnostics": "main.c:1:17: error: use of undeclared identifier 'this'\n    1 | int main(void){ this is invalid C; }\n      |                 ^\n1 error generated.\n",
+      "ms": 396.1999999997206
+    },
+    {
+      "id": "exit-status",
+      "source": "int main(void){return 7;}",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 7,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 7,
+      "files": {},
+      "diagnostics": "",
+      "ms": 485.5
+    },
+    {
+      "id": "timeout",
+      "source": "int main(void){volatile unsigned int n=0;for(;;)n++;}",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "reason": "execution timeout"
+    }
+  ],
+  "testHost": {
+    "platform": "win32",
+    "node": "v25.2.1",
+    "mode": "online",
+    "serverStopped": false
+  },
+  "provenance": [
+    {
+      "name": "browsercc",
+      "version": "0.1.1",
+      "integrity": "sha512-zKSm2b10XjqRBPkY67rS5FK+YgcXd5CH2GRVwyK2+f7EOQRmHR0IN2lQCvJZQfTytSFbwFmlIpZaxSMFcE+jxw==",
+      "tarball": "https://registry.npmjs.org/browsercc/-/browsercc-0.1.1.tgz",
+      "patch": "Move language flags before input filename in getCompilerInvocation: -x c must apply to main.c instead of subsequent inputs."
+    },
+    {
+      "name": "@bjorn3/browser_wasi_shim",
+      "version": "0.4.2",
+      "integrity": "sha512-/iHkCVUG3VbcbmEHn5iIUpIrh7a7WPiwZ3sHy4HZKZzBdSadwdddYDZAII2zBvQYV0Lfi8naZngPCN7WPHI/hA==",
+      "tarball": "https://registry.npmjs.org/@bjorn3/browser_wasi_shim/-/browser_wasi_shim-0.4.2.tgz"
+    },
+    {
+      "name": "binji/wasm-clang",
+      "commit": "648c4a89997a351eef75cdaec3ef5b89d4937dec",
+      "patch": "Expose API.App for structured execution and exit capture; upstream copy retained."
+    }
+  ]
+}
