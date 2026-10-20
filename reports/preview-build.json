@@ -5,8 +5,8 @@
   "previewFiles": [
     {
       "path": "app.js",
-      "bytes": 3830,
-      "sha256": "69ac748dcb0867b3134db17938d0053b55d7db04d7c78d460d237bb80540dcb5"
+      "bytes": 3783,
+      "sha256": "467b88a14e7a44e1ee93e8422fa00be83022703368f158e34df45856272f3f08"
     },
     {
       "path": "assets.json",
@@ -15,8 +15,8 @@
     },
     {
       "path": "diagnostics.js",
-      "bytes": 1319,
-      "sha256": "78bf890ff06d5885be4ed3415c3f485387a5e753485c666d969fd3d9ba2938bb"
+      "bytes": 1738,
+      "sha256": "1a5a153596bb5616d7bef931ea7fa47cc130f65c680d6d4a91a683058f5e7f08"
     },
     {
       "path": "icon.svg",
@@ -25,8 +25,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 2912,
-      "sha256": "b25593a1ce4617de74ce18bfa5c471c3fdeabe7069d3e648f60e207d0056a584"
+      "bytes": 2914,
+      "sha256": "278b12a946ff3c310f369c9cbb6ec644222b38611502a7fd67b778a60122ce5f"
     },
     {
       "path": "manifest.webmanifest",
@@ -45,8 +45,8 @@
     },
     {
       "path": "runner.js",
-      "bytes": 3803,
-      "sha256": "2fae3cc3872dacd40386e4c88f70e66e406c536008f1f94ea1e7ff91417448bc"
+      "bytes": 3805,
+      "sha256": "bfdf0c0a0d22dbf17791f974ba36b2754974502243ad29d64c22c359a37d2c4a"
     },
     {
       "path": "style.css",
@@ -55,8 +55,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 2432,
-      "sha256": "f2b2952e7803a13af6fa7a07d98bcd8378aab01f4278ff59cd0cf8f4d48fe1db"
+      "bytes": 2434,
+      "sha256": "b8e3582c99f86163ccaa0a4c27dad1918b863d05eb9943c75697df1743771774"
     },
     {
       "path": "tests/cases.js",
@@ -300,8 +300,8 @@
     },
     {
       "path": "build.json",
-      "bytes": 170,
-      "sha256": "dabcec4f9e2325f26ea3e47607fe69383c607d0d52682bfcdd36c0ab590cc3ed"
+      "bytes": 172,
+      "sha256": "55dcb5915951f053b209c3f8bb7cbe016f8abc6ca1a73970643a36d0ba553094"
     }
   ]
 }

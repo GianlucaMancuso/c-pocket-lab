@@ -28,6 +28,8 @@ jobs:
           node-version: '22'
       - name: Verify local compiler assets
         run: npm run check
+      - name: Verify error rendering with recorded Safari crash reports
+        run: npm run test:diagnostics
       - name: Build isolated preview and preserve main byte for byte
         run: npm run build:preview
       - name: Test preview with the production service worker already installed

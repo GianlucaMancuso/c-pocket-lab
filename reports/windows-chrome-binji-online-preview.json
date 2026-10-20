@@ -1,22 +1,22 @@
 {
   "engine": "binji",
-  "build": "study-diagnostics-v1",
-  "date": "2026-10-20T07:27:55.925Z",
+  "build": "study-diagnostics-v1.1",
+  "date": "2026-10-20T08:48:27.512Z",
   "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
   "channel": "preview",
-  "appUrl": "http://127.0.0.1:62899/c-pocket-lab/preview/",
+  "appUrl": "http://127.0.0.1:60840/c-pocket-lab/preview/",
   "standalone": false,
   "online": true,
   "onlineAtStart": true,
   "results": [
     {
       "id": "printf",
-      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",502415);return 0;}",
+      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",675628);return 0;}",
       "stdin": "",
-      "expected": "hello 502415\n",
+      "expected": "hello 675628\n",
       "expectedExitCode": 0,
       "status": "PASS",
-      "stdout": "hello 502415\n",
+      "stdout": "hello 675628\n",
       "stderr": "",
       "exitCode": 0,
       "files": {},
@@ -25,7 +25,7 @@
         "lineBytes": 64,
         "nameBytes": 770
       },
-      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:54: warning: no newline at end of file [-Wnewline-eof]\nint main(void){printf(\"hello %d\\n\",502415);return 0;}\n                                                     ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:54: warning: no newline at end of file [-Wnewline-eof]\nint main(void){printf(\"hello %d\\n\",675628);return 0;}\n                                                     ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
       "diagnosticEntries": [
         {
           "file": "main.c",
@@ -36,7 +36,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 313.5
+      "ms": 329
     },
     {
       "id": "scanf",
@@ -65,7 +65,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 341.5
+      "ms": 371.2000000011176
     },
     {
       "id": "loops-functions-arrays",
@@ -94,7 +94,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 369.20000000018626
+      "ms": 387.19999999925494
     },
     {
       "id": "strings-pointers-struct",
@@ -123,7 +123,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 377.29999999981374
+      "ms": 371.40000000037253
     },
     {
       "id": "malloc-free",
@@ -152,7 +152,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 354.29999999981374
+      "ms": 371.59999999962747
     },
     {
       "id": "files",
@@ -183,7 +183,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 382.40000000037253
+      "ms": 399.19999999925494
     },
     {
       "id": "scanf-eof",
@@ -212,7 +212,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 361.6000000005588
+      "ms": 337.8999999985099
     },
     {
       "id": "compile-error",
@@ -241,7 +241,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 151.5
+      "ms": 162.7000000011176
     },
     {
       "id": "exit-status",
@@ -270,7 +270,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 293.59999999962747
+      "ms": 278.40000000037253
     },
     {
       "id": "timeout",
@@ -315,7 +315,7 @@
           "option": "-Wunused-variable"
         }
       ],
-      "ms": 176.20000000018626
+      "ms": 186.59999999962747
     },
     {
       "id": "warning-unused-parameter",
@@ -352,7 +352,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 179.5
+      "ms": 182.40000000037253
     },
     {
       "id": "warning-printf-format",
@@ -389,7 +389,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 228.8999999994412
+      "ms": 236.2999999988824
     },
     {
       "id": "syntax-location",
@@ -418,7 +418,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 114.59999999962747
+      "ms": 109.59999999962747
     },
     {
       "id": "debug-symbols",
@@ -447,7 +447,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 172.1000000005588
+      "ms": 175.2000000011176
     },
     {
       "id": "runtime-divide-zero",
@@ -463,7 +463,7 @@
       "runtimeError": {
         "name": "RuntimeError",
         "message": "divide by zero",
-        "stack": "RuntimeError: divide by zero\n    at __original_main (wasm://wasm/0001f44e:wasm-function[13]:0x47f)\n    at main (wasm://wasm/0001f44e:wasm-function[14]:0x49d)\n    at _start (wasm://wasm/0001f44e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:62899/c-pocket-lab/preview/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:62899/c-pocket-lab/preview/worker.js:123:20)"
+        "stack": "RuntimeError: divide by zero\n    at __original_main (wasm://wasm/0001f44e:wasm-function[13]:0x47f)\n    at main (wasm://wasm/0001f44e:wasm-function[14]:0x49d)\n    at _start (wasm://wasm/0001f44e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:60840/c-pocket-lab/preview/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:60840/c-pocket-lab/preview/worker.js:123:20)"
       },
       "debug": {
         "infoBytes": 85,
@@ -481,7 +481,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 193.69999999925494
+      "ms": 196.90000000037253
     },
     {
       "id": "runtime-memory-bounds",
@@ -497,7 +497,7 @@
       "runtimeError": {
         "name": "RuntimeError",
         "message": "memory access out of bounds",
-        "stack": "RuntimeError: memory access out of bounds\n    at __original_main (wasm://wasm/0001f67e:wasm-function[13]:0x47d)\n    at main (wasm://wasm/0001f67e:wasm-function[14]:0x4a9)\n    at _start (wasm://wasm/0001f67e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:62899/c-pocket-lab/preview/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:62899/c-pocket-lab/preview/worker.js:123:20)"
+        "stack": "RuntimeError: memory access out of bounds\n    at __original_main (wasm://wasm/0001f67e:wasm-function[13]:0x47d)\n    at main (wasm://wasm/0001f67e:wasm-function[14]:0x4a9)\n    at _start (wasm://wasm/0001f67e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:60840/c-pocket-lab/preview/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:60840/c-pocket-lab/preview/worker.js:123:20)"
       },
       "debug": {
         "infoBytes": 120,
@@ -515,7 +515,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 200
+      "ms": 197.5
     }
   ],
   "uiChecks": [
@@ -526,7 +526,7 @@
         "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n}\n ^\nmain.c:2:9: warning: unused variable 'unused' [-Wunused-variable]\n    int unused = 42;\n        ^\n2 warnings generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
         "output": "Nessun output.",
         "runtime": "Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.",
-        "status": "Esecuzione completata | 2 warning | exit 0 | 168 ms"
+        "status": "Esecuzione completata | 2 warning | exit 0 | 180 ms"
       }
     },
     {
@@ -536,7 +536,7 @@
         "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:13: error: expected expression\n    int n = ;\n            ^\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n}\n ^\n1 warning and 1 error generated.\nError: process exited with code 1.\n",
         "output": "Programma non eseguito: correggi gli errori di compilazione.",
         "runtime": "Esecuzione non avviata.",
-        "status": "Compilazione fallita | 1 warning | 116 ms"
+        "status": "Compilazione fallita | 1 warning | 107 ms"
       }
     },
     {
@@ -545,8 +545,8 @@
       "observed": {
         "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:108: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { volatile int divisor = 0; printf(\"before crash\\n\"); fflush(stdout); return 10 / divisor; }\n                                                                                                           ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
         "output": "before crash\n",
-        "runtime": "WebAssembly ha interrotto una divisione intera per zero.\n\nRuntimeError: divide by zero\n    at __original_main (wasm://wasm/0001f44e:wasm-function[13]:0x47f)\n    at main (wasm://wasm/0001f44e:wasm-function[14]:0x49d)\n    at _start (wasm://wasm/0001f44e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:62899/c-pocket-lab/preview/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:62899/c-pocket-lab/preview/worker.js:123:20)",
-        "status": "Errore durante esecuzione | 1 warning | 190 ms"
+        "runtime": "WebAssembly ha interrotto una divisione intera per zero.\n\nRuntimeError: divide by zero\n    at __original_main (wasm://wasm/0001f44e:wasm-function[13]:0x47f)\n    at main (wasm://wasm/0001f44e:wasm-function[14]:0x49d)\n    at _start (wasm://wasm/0001f44e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:60840/c-pocket-lab/preview/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:60840/c-pocket-lab/preview/worker.js:123:20)",
+        "status": "Errore durante esecuzione | 1 warning | 181 ms"
       }
     },
     {
@@ -556,7 +556,7 @@
         "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
         "output": "<b>recovery</b>\n",
         "runtime": "Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.",
-        "status": "Esecuzione completata | exit 0 | 193 ms"
+        "status": "Esecuzione completata | exit 0 | 330 ms"
       }
     },
     {

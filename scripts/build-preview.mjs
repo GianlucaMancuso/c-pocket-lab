@@ -94,7 +94,7 @@ export async function buildPreview(ref = 'origin/main') {
     await put('preview/' + name, bytes);
     previewFiles.push({ path: name, bytes: bytes.length, sha256: digest(bytes) });
   }
-  const metadata = Buffer.from(JSON.stringify({ channel: 'preview', build: 'study-diagnostics-v1',
+  const metadata = Buffer.from(JSON.stringify({ channel: 'preview', build: 'study-diagnostics-v1.1',
     productionCommit: production.sha, createdAt: new Date().toISOString() }, null, 2));
   await put('preview/build.json', metadata);
   previewFiles.push({ path: 'build.json', bytes: metadata.length, sha256: digest(metadata) });

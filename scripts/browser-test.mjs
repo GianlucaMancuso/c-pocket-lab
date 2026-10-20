@@ -211,7 +211,8 @@ try {
         r.status.includes('Compilazione fallita') && r.output.includes('Programma non eseguito'),r);
       r = await run(cases.find(c=>c.id==='runtime-divide-zero').source);
       check('runtime-error-keeps-output',r.output==='before crash\\n' &&
-        r.runtime.includes('RuntimeError') && r.status.includes('Errore durante esecuzione'),r);
+        r.runtime.includes('RuntimeError:') && /divide by zero|division by zero/i.test(r.runtime) &&
+        r.status.includes('Errore durante esecuzione'),r);
       r = await run('#include <stdio.h>\\nint main(void) { puts("<b>recovery</b>"); return 0; }\\n');
       check('recovery-and-output-as-text',r.output==='<b>recovery</b>\\n' &&
         !document.querySelector('#output b') && r.status.includes('exit 0') && !r.runtime.includes('RuntimeError'),r);

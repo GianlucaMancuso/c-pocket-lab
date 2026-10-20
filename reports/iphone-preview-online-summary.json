@@ -1,0 +1,26 @@
+{
+  "recordType": "summary-of-user-pasted-report",
+  "engine": "binji",
+  "build": "study-diagnostics-v1",
+  "date": "2026-10-20T08:12:54.291Z",
+  "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1",
+  "channel": "preview",
+  "appUrl": "https://gianlucamancuso.github.io/c-pocket-lab/preview/",
+  "standalone": false,
+  "online": true,
+  "onlineAtStart": true,
+  "passed": 17,
+  "total": 17,
+  "passedCases": ["printf", "scanf", "loops-functions-arrays", "strings-pointers-struct", "malloc-free", "files", "scanf-eof", "compile-error", "exit-status", "timeout", "warning-unused-variable", "warning-unused-parameter", "warning-printf-format", "syntax-location", "debug-symbols", "runtime-divide-zero", "runtime-memory-bounds"],
+  "printfValue": 199855,
+  "observations": {
+    "warningLocationsAndOptionsPresent": true,
+    "syntaxError": "main.c:2:13: error: expected expression",
+    "debugSymbolTest": { "infoBytes": 99, "lineBytes": 94, "nameBytes": 437 },
+    "divisionErrorMessage": "Division by zero (evaluating 'app.exports._start()')",
+    "memoryErrorMessage": "Out of bounds memory access (evaluating 'app.exports._start()')",
+    "outputBeforeEachCrash": "before crash\n",
+    "safariStackContainsNameAndMessage": false
+  },
+  "scope": "Online test only, ordinary Safari tab. Does not validate offline Home launch or visual UI checks. Original full JSON was supplied in conversation; this file is a summary."
+}

@@ -2,7 +2,7 @@
 
 Banco di prova per compilare vero C con Clang/LLD WebAssembly locale e avviare il risultato con runtime WASI. Codice C libero, stdin anticipato, log, output, arresto e test automatici.
 
-**Stato: binji verificato su iPhone iOS 18.5, 10/10 casi online e offline in modalità standalone.** I report originali sono in reports/iphone-binji-online.json e reports/iphone-binji-offline.json. L'aggiornamento Diagnostica studio v1 aggiunge warning e messaggi runtime: la nuova suite di 17 casi è verificata su Chrome Windows, mentre i nuovi casi devono ancora essere ripetuti su iPhone. Dettagli in [PROGRESS.md](PROGRESS.md).
+**Stato: preview binji v1 verificata su iPhone iOS 18.5, 17/17 casi online e offline, quest'ultima dalla Home.** Il report offline completo è in reports/iphone-preview-binji-offline.json. La v1.1 corregge la visualizzazione dei crash Safari, il cui stack non include il messaggio: ora nome, messaggio e frame sono conservati esplicitamente. La correzione passa test con i dati Safari reali; la verifica visiva v1.1 su iPhone resta necessaria prima del merge. Dettagli in [PROGRESS.md](PROGRESS.md).
 
 Con Node e Python installati, da una macchina con accesso a registry.npmjs.org, api.github.com e raw.githubusercontent.com:
 

@@ -53,7 +53,7 @@ export async function runSuite(engine, report = () => {}) {
   const tests = cases.map(test => test.id === 'printf' ? { ...test,
     source: test.source.replace(',42)', `,${nonce})`), expected: `hello ${nonce}\n` } : test);
   for (const test of tests) { const result = await runCase(engine, test); results.push(result); report(result); }
-  return { engine, build: 'study-diagnostics-v1', date: new Date().toISOString(), userAgent: navigator.userAgent,
+  return { engine, build: 'study-diagnostics-v1.1', date: new Date().toISOString(), userAgent: navigator.userAgent,
     channel: document.querySelector('meta[name="c-pocket-channel"]')?.content || 'main', appUrl: location.href,
     standalone: matchMedia('(display-mode: standalone)').matches || navigator.standalone === true,
     online: navigator.onLine, onlineAtStart, results };

@@ -1,5 +1,5 @@
 import { runSuite, runProgram } from './runner.js';
-import { plainLog, runtimeExplanation } from './diagnostics.js';
+import { plainLog, formatRuntimeError } from './diagnostics.js';
 import { prepareOffline } from './offline.js';
 const status = document.querySelector('#status');
 let lastReport;
@@ -25,7 +25,7 @@ document.querySelector('#compile').onclick = async () => {
     output.textContent = (result.stdout || '') + (result.stderr || '') ||
       (result.compileError ? 'Programma non eseguito: correggi gli errori di compilazione.' : 'Nessun output.');
     runtime.textContent = result.runtimeError ?
-      runtimeExplanation(result.runtimeError) + '\n\n' + plainLog(result.runtimeError.stack) :
+      formatRuntimeError(result.runtimeError) :
       result.reason ? plainLog(result.reason) : result.compileError ? 'Esecuzione non avviata.' : 'Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.';
     const labels = { OK: 'Esecuzione completata', COMPILE_ERROR: 'Compilazione fallita', RUNTIME_ERROR: 'Errore durante esecuzione',
       EXIT: 'Programma terminato con codice non zero', TIMEOUT: 'Tempo limite raggiunto', STOPPED: 'Arrestato', ERROR: 'Errore della toolchain', BLOCKED: 'Toolchain non disponibile' };

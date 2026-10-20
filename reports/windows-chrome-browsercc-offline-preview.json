@@ -1,22 +1,22 @@
 {
   "engine": "browsercc",
-  "build": "study-diagnostics-v1",
-  "date": "2026-10-20T07:28:45.846Z",
+  "build": "study-diagnostics-v1.1",
+  "date": "2026-10-20T08:49:28.102Z",
   "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
   "channel": "preview",
-  "appUrl": "http://127.0.0.1:64211/c-pocket-lab/preview/",
+  "appUrl": "http://127.0.0.1:60017/c-pocket-lab/preview/",
   "standalone": false,
   "online": false,
   "onlineAtStart": false,
   "results": [
     {
       "id": "printf",
-      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",73963);return 0;}",
+      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",490301);return 0;}",
       "stdin": "",
-      "expected": "hello 73963\n",
+      "expected": "hello 490301\n",
       "expectedExitCode": 0,
       "status": "PASS",
-      "stdout": "hello 73963\n",
+      "stdout": "hello 490301\n",
       "stderr": "",
       "exitCode": 0,
       "files": {},
@@ -25,18 +25,18 @@
         "lineBytes": 22619,
         "nameBytes": 828
       },
-      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:53: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void){printf(\"hello %d\\n\",73963);return 0;}\n      |                                                     ^\n1 warning generated.\n",
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:54: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void){printf(\"hello %d\\n\",490301);return 0;}\n      |                                                      ^\n1 warning generated.\n",
       "diagnosticEntries": [
         {
           "file": "main.c",
           "line": 2,
-          "column": 53,
+          "column": 54,
           "severity": "warning",
           "message": "no newline at end of file [-Wnewline-eof]",
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 459.20000000018626
+      "ms": 472.19999999925494
     },
     {
       "id": "scanf",
@@ -65,7 +65,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 506.90000000037253
+      "ms": 504.5
     },
     {
       "id": "loops-functions-arrays",
@@ -94,7 +94,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 597.5
+      "ms": 627.6000000014901
     },
     {
       "id": "strings-pointers-struct",
@@ -123,7 +123,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 912
+      "ms": 949.6999999992549
     },
     {
       "id": "malloc-free",
@@ -152,7 +152,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 601.5
+      "ms": 620.4000000003725
     },
     {
       "id": "files",
@@ -183,7 +183,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 639.2999999998137
+      "ms": 649.8999999985099
     },
     {
       "id": "scanf-eof",
@@ -212,7 +212,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 634.9000000003725
+      "ms": 698.4000000003725
     },
     {
       "id": "compile-error",
@@ -240,7 +240,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 436.59999999962747
+      "ms": 448.59999999962747
     },
     {
       "id": "exit-status",
@@ -269,7 +269,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 574.2000000001863
+      "ms": 537.4000000003725
     },
     {
       "id": "timeout",
@@ -314,7 +314,7 @@
           "option": "-Wunused-variable"
         }
       ],
-      "ms": 468.80000000074506
+      "ms": 468.09999999962747
     },
     {
       "id": "warning-unused-parameter",
@@ -351,7 +351,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 452.1000000005588
+      "ms": 446.3999999985099
     },
     {
       "id": "warning-printf-format",
@@ -388,7 +388,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 534.1000000005588
+      "ms": 492.09999999962747
     },
     {
       "id": "syntax-location",
@@ -416,7 +416,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 386.1000000005588
+      "ms": 382.40000000037253
     },
     {
       "id": "debug-symbols",
@@ -445,7 +445,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 639.5
+      "ms": 641.4000000003725
     },
     {
       "id": "runtime-divide-zero",
@@ -461,7 +461,7 @@
       "runtimeError": {
         "name": "RuntimeError",
         "message": "divide by zero",
-        "stack": "RuntimeError: divide by zero\n    at a.out.__original_main (wasm://wasm/a.out-00062d6a:wasm-function[7]:0x248)\n    at a.out._start (wasm://wasm/a.out-00062d6a:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:64211/c-pocket-lab/preview/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:64211/c-pocket-lab/preview/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:64211/c-pocket-lab/preview/worker.js:123:20)"
+        "stack": "RuntimeError: divide by zero\n    at a.out.__original_main (wasm://wasm/a.out-00062d6a:wasm-function[7]:0x248)\n    at a.out._start (wasm://wasm/a.out-00062d6a:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:60017/c-pocket-lab/preview/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:60017/c-pocket-lab/preview/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:60017/c-pocket-lab/preview/worker.js:123:20)"
       },
       "debug": {
         "infoBytes": 28828,
@@ -479,7 +479,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 579
+      "ms": 570.3000000007451
     },
     {
       "id": "runtime-memory-bounds",
@@ -495,7 +495,7 @@
       "runtimeError": {
         "name": "RuntimeError",
         "message": "memory access out of bounds",
-        "stack": "RuntimeError: memory access out of bounds\n    at a.out.__original_main (wasm://wasm/a.out-00062f0e:wasm-function[7]:0x242)\n    at a.out._start (wasm://wasm/a.out-00062f0e:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:64211/c-pocket-lab/preview/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:64211/c-pocket-lab/preview/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:64211/c-pocket-lab/preview/worker.js:123:20)"
+        "stack": "RuntimeError: memory access out of bounds\n    at a.out.__original_main (wasm://wasm/a.out-00062f0e:wasm-function[7]:0x242)\n    at a.out._start (wasm://wasm/a.out-00062f0e:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:60017/c-pocket-lab/preview/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:60017/c-pocket-lab/preview/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:60017/c-pocket-lab/preview/worker.js:123:20)"
       },
       "debug": {
         "infoBytes": 28863,
@@ -513,7 +513,7 @@
           "option": "-Wnewline-eof"
         }
       ],
-      "ms": 582.7999999998137
+      "ms": 577.3999999985099
     }
   ],
   "uiChecks": [
@@ -524,7 +524,7 @@
         "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n    4 | }\n      |  ^\nmain.c:2:9: warning: unused variable 'unused' [-Wunused-variable]\n    2 |     int unused = 42;\n      |         ^~~~~~\n2 warnings generated.\n",
         "output": "Nessun output.",
         "runtime": "Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.",
-        "status": "Esecuzione completata | 2 warning | exit 0 | 563 ms"
+        "status": "Esecuzione completata | 2 warning | exit 0 | 564 ms"
       }
     },
     {
@@ -534,7 +534,7 @@
         "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:13: error: expected expression\n    2 |     int n = ;\n      |             ^\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n    4 | }\n      |  ^\n1 warning and 1 error generated.\n",
         "output": "Programma non eseguito: correggi gli errori di compilazione.",
         "runtime": "Esecuzione non avviata.",
-        "status": "Compilazione fallita | 1 warning | 415 ms"
+        "status": "Compilazione fallita | 1 warning | 424 ms"
       }
     },
     {
@@ -543,8 +543,8 @@
       "observed": {
         "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:108: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void) { volatile int divisor = 0; printf(\"before crash\\n\"); fflush(stdout); return 10 / divisor; }\n      |                                                                                                            ^\n1 warning generated.\n",
         "output": "before crash\n",
-        "runtime": "WebAssembly ha interrotto una divisione intera per zero.\n\nRuntimeError: divide by zero\n    at a.out.__original_main (wasm://wasm/a.out-00062d6a:wasm-function[7]:0x248)\n    at a.out._start (wasm://wasm/a.out-00062d6a:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:64211/c-pocket-lab/preview/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:64211/c-pocket-lab/preview/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:64211/c-pocket-lab/preview/worker.js:123:20)",
-        "status": "Errore durante esecuzione | 1 warning | 627 ms"
+        "runtime": "WebAssembly ha interrotto una divisione intera per zero.\n\nRuntimeError: divide by zero\n    at a.out.__original_main (wasm://wasm/a.out-00062d6a:wasm-function[7]:0x248)\n    at a.out._start (wasm://wasm/a.out-00062d6a:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:60017/c-pocket-lab/preview/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:60017/c-pocket-lab/preview/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:60017/c-pocket-lab/preview/worker.js:123:20)",
+        "status": "Errore durante esecuzione | 1 warning | 624 ms"
       }
     },
     {
@@ -554,7 +554,7 @@
         "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\n",
         "output": "<b>recovery</b>\n",
         "runtime": "Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.",
-        "status": "Esecuzione completata | exit 0 | 578 ms"
+        "status": "Esecuzione completata | exit 0 | 580 ms"
       }
     },
     {

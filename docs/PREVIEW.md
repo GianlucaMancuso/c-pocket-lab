@@ -47,11 +47,11 @@ Se GitHub segnala che il branch non può distribuire nell'ambiente github-pages,
 
 ## Prova iPhone prima della release
 
-1. Dopo il workflow verde, aprire in Safari il link che termina con /preview/ e controllare banner VERSIONE DI PROVA e dicitura Diagnostica studio v1.
+1. Dopo il workflow verde, aprire in Safari il link che termina con /preview/ e controllare banner VERSIONE DI PROVA e dicitura Diagnostica studio v1.1.
 2. Aggiungerlo alla Home con il nome C Lab Prova. Conservare l'icona dell'app principale.
 3. Con binji selezionato eseguire i 17 test online. Esportare il JSON; il campo channel deve essere preview e appUrl deve contenere /preview/.
 4. Provare un warning, un errore sintattico e una divisione per zero inseriti liberamente. Verificare log con posizione, indicatore ^, output prima del crash e nuova esecuzione dopo la correzione.
 5. Nella preview premere Prepara offline, attendere, ricaricare online, chiudere e riaprire dalla relativa icona con modalità aereo attiva e Wi-Fi spento. Ripetere i 17 test ed esportare il report.
 6. Aprire anche l'app principale dalla sua icona con rete spenta e verificare che continui a compilare. Non cancellare i dati del sito durante la prova.
 
-I report iPhone già ricevuti con 10/10 riguardano la versione principale precedente. La promozione della diagnostica su main resta subordinata alla nuova verifica sul dispositivo e alla successiva autorizzazione. Il test non dimostra la conservazione indefinita della cache né il salvataggio dei programmi.
+I report iPhone della preview v1 ora confermano 17/17 casi online e offline dalla Home. La v1.1 corregge solo la visualizzazione del messaggio runtime Safari e passa tre test di regressione con dati registrati reali. Prima del merge controllare nell'app v1.1 che una divisione per zero mostri esplicitamente RuntimeError: Division by zero oltre ai frame Wasm, anche dopo la preparazione offline. La promozione su main resta subordinata alla verifica visiva e alla successiva autorizzazione. Il test non dimostra la conservazione indefinita della cache né il salvataggio dei programmi.

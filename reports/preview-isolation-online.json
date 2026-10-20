@@ -8,7 +8,7 @@
       "status": "PASS",
       "observed": {
         "output": "production preserved\n",
-        "controller": "http://127.0.0.1:56103/c-pocket-lab/sw.js",
+        "controller": "http://127.0.0.1:60840/c-pocket-lab/sw.js",
         "previewBanner": false
       }
     },
@@ -16,9 +16,9 @@
       "id": "preview-scope-cache-and-install-identity",
       "status": "PASS",
       "observed": {
-        "root": "http://127.0.0.1:56103/c-pocket-lab/",
-        "preview": "http://127.0.0.1:56103/c-pocket-lab/preview/",
-        "controller": "http://127.0.0.1:56103/c-pocket-lab/preview/sw.js",
+        "root": "http://127.0.0.1:60840/c-pocket-lab/",
+        "preview": "http://127.0.0.1:60840/c-pocket-lab/preview/",
+        "controller": "http://127.0.0.1:60840/c-pocket-lab/preview/sw.js",
         "banner": true,
         "manifest": {
           "id": "./",
@@ -40,7 +40,7 @@
         },
         "caches": [
           "c-pocket-phase1-v2",
-          "c-pocket-study-diagnostics-v1:/c-pocket-lab/preview/"
+          "c-pocket-study-diagnostics-v1.1:/c-pocket-lab/preview/"
         ]
       }
     },
@@ -53,7 +53,7 @@
       "status": "PASS",
       "observed": {
         "output": "production preserved\n",
-        "controller": "http://127.0.0.1:56103/c-pocket-lab/sw.js",
+        "controller": "http://127.0.0.1:60840/c-pocket-lab/sw.js",
         "previewBanner": false
       }
     },

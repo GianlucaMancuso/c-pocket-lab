@@ -24,3 +24,11 @@ export function runtimeExplanation(error) {
     return 'Il programma ha eseguito una istruzione trap. Questo messaggio da solo non identifica la causa nel codice C.';
   return 'Esecuzione interrotta. Il messaggio e lo stack originali sono riportati sotto.';
 }
+
+export function formatRuntimeError(error) {
+  const heading = plainLog(`${error.name || 'Error'}: ${error.message || 'Errore durante esecuzione'}`);
+  const stack = plainLog(error.stack || '');
+  // Safari reports frames in .stack without repeating .name or .message.
+  const details = stack.startsWith(heading) ? stack : heading + (stack ? '\n' + stack : '');
+  return runtimeExplanation(error) + '\n\n' + details;
+}

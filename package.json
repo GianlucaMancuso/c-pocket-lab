@@ -11,6 +11,7 @@
     "build:preview": "node scripts/build-preview.mjs",
     "check:preview": "node scripts/build-preview.mjs --check",
     "test:preview": "node scripts/browser-test.mjs --preview",
-    "test:preview:offline": "node scripts/browser-test.mjs --preview --offline"
+    "test:preview:offline": "node scripts/browser-test.mjs --preview --offline",
+    "test:diagnostics": "node --test scripts/diagnostics.test.mjs"
   }
 }

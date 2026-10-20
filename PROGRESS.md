@@ -4,11 +4,17 @@ Aggiornamento: 20 ottobre 2026. Prototipo con compilazione C locale WebAssembly.
 
 ## Esito attuale
 
+Preview v1 verificata su iPhone: report online del 2026-10-20T08:12:54.291Z e offline del 2026-10-20T08:43:16.086Z, build study-diagnostics-v1, channel preview, binji su Safari iOS 18.5. Entrambi passano 17/17 casi. Online: rete true, standalone false. Offline: online e onlineAtStart false, standalone true. Il numero compilato da printf cambia da 199855 a 176648, con output corretto. Sintesi online in reports/iphone-preview-online-summary.json; JSON offline completo in reports/iphone-preview-binji-offline.json.
+
+La preview v1.1 corregge una differenza osservata nel report reale: Safari mette nello stack solo i frame, senza ripetere nome e messaggio del crash. La console ora compone esplicitamente nome, messaggio originale e stack, mantenendo la spiegazione italiana. Tre test di regressione passano usando entrambi i crash registrati nel report Safari e uno stack nello stile Chrome. Compilatore, runtime, flag C e 17 casi restano invariati. La correzione visiva v1.1 deve essere pubblicata solo in preview e controllata su iPhone prima della promozione a main.
+
+Verifica locale della v1.1 completata: 3/3 test di regressione della formattazione; 17/17 casi C e 5/5 controlli UI con entrambe le toolchain, online e offline; 5/5 controlli di isolamento per ciascuna modalità. La versione principale rimane identica a main. Il push preview v1 e000409 e l'abilitazione del branch nell'ambiente github-pages sono stati eseguiti dall'utente; il workflow è poi risultato verde secondo la conferma ricevuta. La v1.1 non è ancora caricata.
+
 La nuova diagnostica è predisposta per una preview separata su /c-pocket-lab/preview/. La release principale resta sospesa fino alla verifica iPhone della nuova versione. Nessun push o deployment della preview è stato eseguito dalla sessione: la rete GitHub è ancora bloccata e la creazione del branch locale dal sandbox non è riuscita. I comandi di caricamento vanno eseguiti dal PowerShell dell'utente come descritto in docs/PREVIEW.md.
 
 La fattibilità del prototipo binji è dimostrata dai report ricevuti su iPhone iOS 18.5: 10/10 casi online e 10/10 offline, app in modalità standalone. I report originali sono conservati in reports/iphone-binji-online.json e reports/iphone-binji-offline.json.
 
-L'aggiornamento della diagnostica aggiunge warning, dati di debug e messaggi runtime. Su Chrome Windows entrambe le toolchain passano 17/17 casi C e 5/5 verifiche UI, sia online sia offline con server spento. I nuovi 7 casi e la nuova interfaccia dei log devono ancora essere verificati su iPhone: i report iPhone precedenti riguardano il prototipo prima di questo aggiornamento.
+L'aggiornamento della diagnostica aggiunge warning, dati di debug e messaggi runtime. Su Chrome Windows entrambe le toolchain passano 17/17 casi C e 5/5 verifiche UI, sia online sia offline con server spento. La stessa suite C della preview v1 passa ora su iPhone online e offline. I report non certificano da soli la visualizzazione dei log; la correzione Safari della v1.1 è una verifica visiva separata.
 
 ## Evidenze su iPhone reale
 
@@ -16,6 +22,8 @@ L'aggiornamento della diagnostica aggiunge warning, dati di debug e messaggi run
 | --- | --- | --- | --- | --- |
 | Online | 2026-10-20T06:26:24.940Z | online true | standalone true | 10/10 PASS |
 | Offline | 2026-10-20T06:27:12.181Z | online false | standalone true | 10/10 PASS |
+| Preview v1 online | 2026-10-20T08:12:54.291Z | online true | standalone false | 17/17 PASS |
+| Preview v1 offline | 2026-10-20T08:43:16.086Z | online e onlineAtStart false | standalone true | 17/17 PASS |
 
 User agent: iPhone, iOS 18.5, WebKit 605.1.15. Il modello iPhone non è specificato. Il test printf contiene 31148 online e 856289 offline, entrambi compilati con output corretto. I tempi offline dei casi positivi sono circa 0,62-0,79 secondi. Il report non registra lo stato delle singole radio né prova da solo un riavvio completo del dispositivo.
 
@@ -82,7 +90,7 @@ Ambiente: PowerShell, Node v25.2.1, Python 3.10.6, HeadlessChrome 155. Script au
 - 5/5 controlli di isolamento passano sia online sia offline: app principale prima/dopo, scope/cache/manifest distinti, cache principale invariata e file principali identici a main. Nel caso offline il server è spento e la rete DevTools è disabilitata.
 - Nuovo helper offline usa la registrazione della pagina corrente; la cache include il percorso nello spazio dei nomi. Preview e principale restano sullo stesso origin e condividono la quota storage del browser.
 - Workflow separato per preview/diagnostics con test prima del deploy e controllo finale che main non sia cambiato. Guard sul workflow principale impedisce avvio manuale della release da un branch preview.
-- I nuovi risultati iPhone della preview non sono ancora disponibili. Nessuna promozione automatica a main.
+- I risultati iPhone v1 sono ora disponibili: 17/17 online e 17/17 offline dalla Home. Rimane la verifica visiva della correzione console Safari v1.1. Nessuna promozione automatica a main.
 
 All'inizio Git/curl/npm non potevano raggiungere Internet dal sandbox. L'utente ha eseguito npm run acquire nel proprio PowerShell e acquisito i 47 asset. Il controllo completo falliva correttamente prima di tale acquisizione.
 
@@ -99,6 +107,6 @@ La cache può essere rimossa da iOS o dall'utente. Dopo questo aggiornamento apr
 Repo: https://github.com/GianlucaMancuso/c-pocket-lab
 Pages: https://gianlucamancuso.github.io/c-pocket-lab/
 
-Prossimo passo: caricare solo il branch preview/diagnostics, attendere il workflow e ripetere i 17 casi su iPhone dal percorso /preview/, online e offline. Controllare VERSIONE DI PROVA, Diagnostica studio v1 e channel preview nei report. Verificare anche che l'icona principale continui a compilare offline. Conservare i nuovi report separati dai precedenti. Nessun nuovo risultato iPhone viene dedotto dai test Windows; la release principale resta sospesa.
+Prossimo passo: caricare la correzione sul solo branch preview/diagnostics e attendere il workflow. Su iPhone controllare VERSIONE DI PROVA e Diagnostica studio v1.1. Eseguire una divisione per zero inserita liberamente e verificare che la console mostri esplicitamente RuntimeError: Division by zero oltre ai frame Wasm. Aggiornare la cache con Prepara offline e verificare anche dalla Home con rete spenta. I 17 casi C della v1 sono già passati online e offline; i nuovi risultati visivi v1.1 non sono ancora disponibili. La release principale resta sospesa fino alla verifica e all'autorizzazione.
 
 Salvataggio/riapertura programmi, editor con evidenziazione, libreria esercizi e modalità esame restano da sviluppare nelle fasi successive. Non è dichiarato supporto generale a tutte le librerie C, syscall WASI, thread, processi o networking.

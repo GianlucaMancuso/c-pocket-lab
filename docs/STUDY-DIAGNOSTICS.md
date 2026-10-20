@@ -1,6 +1,6 @@
 # Diagnostica per studiare C
 
-La versione Diagnostica studio v1 compila C11 con -O0, dati di debug equivalenti a -g, -Wall -Wextra -Wpedantic -Wformat=2. Non usa -Werror: un warning non impedisce da solo l'esecuzione.
+La versione Diagnostica studio v1.1 compila C11 con -O0, dati di debug equivalenti a -g, -Wall -Wextra -Wpedantic -Wformat=2. Non usa -Werror: un warning non impedisce da solo l'esecuzione.
 
 ## Come leggere il log
 
@@ -62,10 +62,10 @@ Esperimenti riproducibili: `node scripts/browser-test.mjs --probes`. Non sono pr
 
 ## Verifica su iPhone dell'aggiornamento
 
-1. Aprire online l'app pubblicata e controllare la dicitura Diagnostica studio v1.
-2. Eseguire i 17 casi con binji, esportando un nuovo report. I 10/10 del prototipo precedente non validano i nuovi 7 casi.
+1. Aprire online l'app pubblicata e controllare la dicitura Diagnostica studio v1.1.
+2. I 17 casi della preview v1 hanno passato la verifica su iPhone online e offline. Per la correzione visiva v1.1 controllare in particolare la sezione degli errori runtime: deve conservare nome e messaggio oltre allo stack anche su Safari.
 3. Inserire liberamente i due esempi sopra: il warning deve restare visibile dopo exit 0; il crash deve avere una sezione separata e conservare l'output.
 4. Correggere il programma dopo un errore, verificando che il successivo run funzioni e che i vecchi messaggi siano sostituiti.
-5. Premere Prepara offline, ricaricare online, chiudere e riaprire dalla Home con modalità aereo e Wi-Fi spento. Ripetere i 17 casi ed esportare il report con build study-diagnostics-v1.
+5. Premere Prepara offline, ricaricare online, chiudere e riaprire dalla Home con modalità aereo e Wi-Fi spento. Ripetere i 17 casi ed esportare il report con build study-diagnostics-v1.1.
 
 Fonti: [manuale Clang](https://clang.llvm.org/docs/UsersManual.html), [ASan](https://clang.llvm.org/docs/AddressSanitizer.html), [UBSan](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html).

@@ -1,5 +1,5 @@
 const BASE = new URL('./', self.location.href);
-const CACHE = 'c-pocket-study-diagnostics-v1:' + BASE.pathname;
+const CACHE = 'c-pocket-study-diagnostics-v1.1:' + BASE.pathname;
 const SHELL = ['index.html', 'app.js', 'style.css', 'runner.js', 'worker.js', 'diagnostics.js', 'offline.js', 'tests/cases.js', 'manifest.webmanifest', 'icon.svg'];
 self.addEventListener('install', event => event.waitUntil(self.skipWaiting()));
 self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
