@@ -1,99 +1,104 @@
-# C Pocket Lab — avanzamento Fase 1
+# C Pocket Lab - avanzamento
 
-Aggiornamento: 20 ottobre 2026. Ambiente: Windows, PowerShell, Node v25.2.1, Python 3.10.6. Workspace inizialmente vuoto.
+Aggiornamento: 20 ottobre 2026. Prototipo con compilazione C locale WebAssembly. Nessuna compilazione remota, CDN o simulazione del linguaggio.
 
 ## Esito attuale
 
-**Fase 1 dimostrata su Chrome Windows, ancora da verificare su iPhone reale.** L'utente ha eseguito `npm run acquire` nel proprio PowerShell ottenendo 47 asset locali. Compilatore, linker, sysroot e runtime sono presenti. Entrambe le toolchain passano 10/10 test C online e 10/10 offline con server HTTP spento. Nessun test Safari iOS reale eseguito e nessun supporto iOS dichiarato. Nessuna interfaccia applicativa completa sviluppata e nessun deployment effettuato.
+La nuova diagnostica è predisposta per una preview separata su /c-pocket-lab/preview/. La release principale resta sospesa fino alla verifica iPhone della nuova versione. Nessun push o deployment della preview è stato eseguito dalla sessione: la rete GitHub è ancora bloccata e la creazione del branch locale dal sandbox non è riuscita. I comandi di caricamento vanno eseguiti dal PowerShell dell'utente come descritto in docs/PREVIEW.md.
 
-## Risultati più recenti — successivi allo sblocco dei download
+La fattibilità del prototipo binji è dimostrata dai report ricevuti su iPhone iOS 18.5: 10/10 casi online e 10/10 offline, app in modalità standalone. I report originali sono conservati in reports/iphone-binji-online.json e reports/iphone-binji-offline.json.
 
-- `npm run check`: PASS, tutti gli asset presenti e hash corrispondenti.
-- `npm run test:browser`: PASS, 10/10 browsercc e 10/10 binji in HeadlessChrome 155 su Windows.
-- `npm run test:offline`: PASS, 10/10 per entrambe le toolchain dopo preparazione cache, disabilitazione rete con DevTools, arresto del server e nuova navigazione. Un worker nuovo compila ogni caso; il sorgente printf cambia numero a ogni suite.
-- Report riproducibili: [browsercc online](reports/windows-chrome-browsercc-online.json), [binji online](reports/windows-chrome-binji-online.json), [browsercc offline](reports/windows-chrome-browsercc-offline.json), [binji offline](reports/windows-chrome-binji-offline.json). Questi report non provano il comportamento su Safari, né un riavvio completo del browser o dell'iPhone.
-- Ultima esecuzione offline: browsercc circa 0,28–0,56 s/caso, binji circa 0,09–0,21 s/caso, escluso il caso timeout. Sono tempi di questo PC, non stime per iPhone.
-- Dimensioni acquisite: browsercc 108,6 MiB incluso PCH C++ inutilizzato, binji 57,6 MiB, shim WASI circa 0,1 MiB. La cache del browser esclude il PCH C++ (18,5 MiB); il pulsante Prepara offline prepara la toolchain selezionata. Per confrontarle offline, prepararle entrambe una per volta.
-- Scelta per la prima prova iPhone: binji come default del banco di prova, per dimensione e tempi desktop inferiori; browsercc rimane disponibile come alternativa più attuale. La scelta definitiva dipende dai risultati reali su iOS.
-- Correzione browsercc: il wrapper npm metteva `-x c` dopo `main.c`; Clang trattava il sorgente come C++ e rifiutava `-std=c11`. Patch riproducibile in scripts/patch-browsercc.mjs, registrata in provenance.json e inclusa nello script di acquisizione. Dopo la correzione tutti i casi passano.
-- Test desktop: Chrome headless richiede `--no-sandbox` nel contesto ristretto; si usa solo un profilo di test isolato, senza dati utente. Nessun requisito equivalente è introdotto nell'app.
-- Prototipo con codice C libero, stdin, output, diagnostica e pulsante Arresta. Nessuna evidenziazione sintassi, salvataggio progetti, libreria esercizi o modalità esame: Fase 2 ancora da iniziare dopo verifica iPhone.
-- Workflow GitHub Pages pronto, pubblica solo public/ e controlla gli hash prima del deploy. Repository remoto ancora da creare/collegare.
+L'aggiornamento della diagnostica aggiunge warning, dati di debug e messaggi runtime. Su Chrome Windows entrambe le toolchain passano 17/17 casi C e 5/5 verifiche UI, sia online sia offline con server spento. I nuovi 7 casi e la nuova interfaccia dei log devono ancora essere verificati su iPhone: i report iPhone precedenti riguardano il prototipo prima di questo aggiornamento.
 
-## Registro iniziale Windows — prima dell'acquisizione eseguita dall'utente
+## Evidenze su iPhone reale
 
-| Operazione | Risultato |
-| --- | --- |
-| Terminale, lettura cwd | PASS: V:\\c-pocket-lab |
-| Creazione, lettura e cancellazione file sentinella | PASS: contenuto `ok` |
-| Ricerca istruzioni AGENTS.md nel workspace | Nessun file trovato |
-| Clone browsercc da GitHub | BLOCCATO: connessione porta 443 fallita |
-| Clone binji/wasm-clang da GitHub | BLOCCATO: connessione porta 443 fallita |
-| curl su raw.githubusercontent.com | BLOCCATO: connessione porta 443 fallita |
-| npm view browsercc | BLOCCATO: EACCES sul tentativo di rete; cache npm predefinita anche fuori dal workspace |
-| `node scripts/acquire.mjs` | BLOCCATO: `TypeError: fetch failed` sui metadata npm |
-| `node scripts/check.mjs --scaffold-only` | PASS: sintassi JS e inventario 10 casi |
-| `node scripts/check.mjs` | FAIL atteso: assets.json mancante; impedisce un falso esito positivo |
-| Server HTTP locale Python e richieste via urllib | PASS: 200 per pagina, worker, service worker, casi e manifest; MIME JS e manifest corretti. Non è un test browser |
+| Report | Timestamp UTC | Stato rete riportato | Modalità | Risultato |
+| --- | --- | --- | --- | --- |
+| Online | 2026-10-20T06:26:24.940Z | online true | standalone true | 10/10 PASS |
+| Offline | 2026-10-20T06:27:12.181Z | online false | standalone true | 10/10 PASS |
 
-I fallimenti di rete non indicano un difetto dei compilatori. La ricerca web è accessibile come strumento separato di consultazione, ma non ha fornito binari scaricabili sul filesystem. Il profilo attuale non consente richieste di elevazione sandbox: non è stato tentato un aggiramento.
+User agent: iPhone, iOS 18.5, WebKit 605.1.15. Il modello iPhone non è specificato. Il test printf contiene 31148 online e 856289 offline, entrambi compilati con output corretto. I tempi offline dei casi positivi sono circa 0,62-0,79 secondi. Il report non registra lo stato delle singole radio né prova da solo un riavvio completo del dispositivo.
 
-## Valutazione documentale e scelta provvisoria
+I 10 casi provati su iPhone sono printf, scanf, cicli/funzioni/array, stringhe/puntatori/struct, malloc/free, file, EOF, errore di compilazione, exit non zero e arresto di un loop infinito. Il test file verifica fopen in scrittura e lettura, fprintf, fscanf e fclose, controllando anche dal runtime il contenuto di data.txt: 73 pocket più newline.
 
-| Aspetto | browsercc | binji/wasm-clang |
+## Diagnostica per lo studio
+
+- Compilazione C11 con -O0, -Wall, -Wextra, -Wpedantic, -Wformat=2 e -fdiagnostics-show-option. I warning non diventano errori.
+- Dati di debug: -g nel driver browsercc; opzioni cc1 equivalenti in binji (-debug-info-kind=limited, -dwarf-version=4, -dwarf-column-info). Un test controlla che il Wasm contenga sezioni .debug_info e .debug_line non vuote.
+- Sezioni separate per log compiler/linker, output del programma ed errori runtime.
+- Testo originale del compilatore, riga, colonna, nome del warning, sorgente e indicatore ^ conservati. Codici ANSI rimossi; righe non spezzate dal compilatore, log scorrevoli orizzontalmente.
+- I warning rimangono visibili dopo esecuzione riuscita. Gli errori C inseriti liberamente vengono classificati come errori di compilazione anche con binji.
+- I crash Wasm preservano l'output già emesso e il messaggio/stack originali. La spiegazione italiana accompagna il messaggio senza attribuire una causa C non dimostrata.
+- -g non fornisce automaticamente un debugger o stack con righe C: al momento gli stack possono contenere nomi funzione e offset Wasm. Nessuna simbolizzazione DWARF implementata.
+
+## Sanitizer: prove e limiti
+
+Le prove sono riproducibili con node scripts/browser-test.mjs --probes. Sono osservazioni separate dai test funzionali; nessun sanitizer è attivo per il codice inserito nell'app.
+
+| Esperimento su Chrome Windows | browsercc | binji |
 | --- | --- | --- |
-| Catena | Clang/LLD Wasm, sysroot, moduli JS Emscripten | Clang/LLD Wasm, sysroot, memfs Wasm e runtime JS |
-| ABI del programma | WASI preview1, runtime separato | WASI `wasi_unstable`, runtime storico abbinato |
-| Integrazione C | API compile; flag espliciti `-x c -std=c11` | La demo forza C++; adattatore invoca cc1 con `-x c -std=c11` |
-| Rischio principale | Memoria di più istanze Clang/LLD e copie sysroot; da misurare su iPhone | Runtime demo storico, syscall incomplete e ABI meno attuale |
-| Acquisizione predisposta | npm browsercc 0.1.1 + browser_wasi_shim 0.4.2 | Commit risolto da API GitHub e registrato prima di scaricare |
-| Esito esecuzione su Chrome Windows | 10/10 online e offline dopo patch wrapper | 10/10 online e offline |
+| AddressSanitizer | Driver rifiuta -fsanitize=address per wasm32-unknown-wasi | Compila, poi link fallisce per simboli __asan_* mancanti |
+| UBSan con messaggi | Link fallisce: __ubsan_handle_add_overflow mancante | Link fallisce: __ubsan_handle_add_overflow_abort mancante |
+| UBSan trap, overflow signed | Arresto RuntimeError: unreachable dopo output | Arresto RuntimeError: unreachable dopo output |
 
-La scelta iniziale era browsercc; dopo le misure desktop il default di prova è binji. Servono ancora stabilità, tempi e memoria su iPhone. Gli artefatti reali e i loro hash sono ora registrati in public/assets.json; il PCH C++ resta nell'archivio locale ma non viene precaricato per l'uso C offline.
+Il driver browsercc usa -fsanitize=undefined; il cc1 storico binji richiede l'espansione esplicita dei controlli e non accetta direttamente il gruppo undefined. La prova binji espande signed-integer-overflow, integer-divide-by-zero, shift-base, shift-exponent, null, alignment e array-bounds. È stato esercitato solo l'overflow signed: gli altri controlli non sono dichiarati verificati.
 
-Fonti primarie consultate:
+Trap mode non richiede il runtime UBSan ma non fornisce il messaggio dettagliato su operandi e riga C. Per questo resta un esperimento e non viene esposto come sostituto di ASan. Use-after-free, double-free, leak e accessi fuori dai singoli oggetti C non sono diagnosticati dal prototipo. I trap Wasm per divisione per zero e accesso oltre memoria lineare non equivalgono a un sanitizer completo.
 
-- [browsercc README](https://github.com/BertalanD/browsercc/blob/main/README.md): architettura, API e dimensioni indicative.
-- [browsercc index.ts](https://github.com/BertalanD/browsercc/blob/main/index.ts): invocazioni compiler/linker e sysroot relativo al modulo.
-- [browsercc package.json](https://github.com/BertalanD/browsercc/blob/main/package.json): versione e struttura distribuzione.
-- [binji README](https://github.com/binji/wasm-clang/blob/master/README.md): demo e componenti.
-- [binji shared.js](https://github.com/binji/wasm-clang/blob/master/shared.js): modalità C++, filesystem e runtime; clock_time_get e poll_oneoff non implementati.
-- [browser_wasi_shim](https://github.com/bjorn3/browser_wasi_shim): runtime WASI e filesystem in memoria.
+Fonti primarie: [manuale Clang](https://clang.llvm.org/docs/UsersManual.html), [AddressSanitizer](https://clang.llvm.org/docs/AddressSanitizer.html), [UBSan](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html).
 
-## Prototipo realizzato e verificato su Chrome Windows
+## Toolchain e distribuzione
 
-- Acquisizione locale con controllo SRI npm, commit binji registrato, hash SHA-256 e manifest degli asset. Nessuna CDN nell'app. Archivi npm fuori dalla directory pubblica.
-- Patch minima registrata a shared.js binji per esporre la classe App; copia upstream conservata. Serve a catturare uscita e codice di ritorno senza confonderli con i log del compilatore.
-- Worker nuovo per ogni caso, compilazione reale C → oggetto → link Wasm → istanza runtime. Nessun interprete, simulazione o risultato precompilato. Adattatori verificati contro gli artefatti presenti.
-- Il caso printf cambia numero nel sorgente a ogni esecuzione della suite; il report include sorgente e stdin per rendere controllabile una nuova compilazione anche offline.
-- stdin precaricato, stdout catturato, directory virtuale per il test file. Nessun accesso al filesystem nativo iPhone.
-- Pagina minima di laboratorio, report JSON, manifest PWA e service worker con cache delle risorse locali della toolchain selezionata; percorsi relativi per GitHub Pages sotto directory repository. La cache non viene dichiarata pronta se un asset manca. Offline verificato su Chrome Windows; installazione Home e offline iPhone non testati.
+Componenti locali acquisiti: browsercc 0.1.1, browser_wasi_shim 0.4.2, binji/wasm-clang commit 648c4a89997a351eef75cdaec3ef5b89d4937dec. Provenienza e patch sono registrate in public/provenance.json; dimensioni e SHA-256 in public/assets.json. I pacchetti npm vengono verificati mediante SRI durante acquisizione.
 
-## Matrice C
+browsercc contiene Clang/LLD con glue Emscripten e produce WASI preview1. binji usa Clang 8, LLD, sysroot, memfs Wasm e runtime JS con ABI wasi_unstable abbinata. Binji è il default per la prima versione, già verificato su iPhone e più piccolo. Browsercc è verificato su Chrome Windows ma non ancora su iPhone.
 
-Tutte le righe: **PASS su Chrome Windows online e offline per entrambe le toolchain; NON ESEGUITE su Safari iOS reale**. Il file testato viene anche letto dal runtime JS e confrontato con `73 pocket` più newline.
+Dimensioni locali: browsercc 108,6 MiB incluso PCH C++ inutilizzato; circa 90 MiB di cache senza PCH. Binji 57,6 MiB; shim WASI circa 0,1 MiB. Il pulsante Prepara offline prepara la toolchain selezionata. Per usarle entrambe offline occorre prepararle entrambe.
 
-| Caso automatico | Verifica prevista |
-| --- | --- |
-| printf | stdout esatto con numero generato localmente e newline, exit 0 |
-| scanf | lettura intero e stringa con ampiezza, conteggio conversioni |
-| loops-functions-arrays | for/while/do-while, funzione, somma array |
-| strings-pointers-struct | strcpy/strcat/strlen, accesso tramite puntatore a struct |
-| malloc-free | 32 allocazioni, scrittura e lettura dati, free; non è una prova di assenza leak |
-| files | fopen w/r, fprintf, fclose, fscanf, controlli valori e contenuto file dal lato runtime |
-| scanf-eof | EOF con stdin vuoto |
-| compile-error | sorgente invalido rifiutato, senza esecuzione |
-| exit-status | ritorno 7 distinguibile da successo |
-| timeout | loop infinito terminato nel worker dopo ingresso in esecuzione |
+Patch browsercc: getCompilerInvocation deve passare -x c prima del nome del sorgente; l'ordine upstream forzava involontariamente C++ e faceva rifiutare -std=c11. Patch riproducibile in scripts/patch-browsercc.mjs, inclusa in acquire. Per binji shared.js espone API.App per catturare exit e output senza i log host; copia upstream conservata.
 
-I test verificano solo questi casi. Non certificano l'intero standard C, tutte le varianti di formato, puntatori fuori limite, esaurimento heap, persistenza dei file o tutte le syscall. Per binji stderr e stdout non sono separati. Nessun supporto dichiarato per thread, networking, processi, librerie native o input interattivo sospeso.
+Fonti: [browsercc](https://github.com/BertalanD/browsercc), [binji/wasm-clang](https://github.com/binji/wasm-clang), [runtime WASI](https://github.com/bjorn3/browser_wasi_shim).
 
-## Decisioni e limiti da risolvere
+## Verifiche Windows
 
-La pagina di GitHub Pages deve essere statica e HTTPS. L'architettura prevista non richiede SharedArrayBuffer, server di compilazione o intestazioni COOP/COEP. Questa proprietà va verificata anche sui glue JS effettivamente scaricati. CSP consente solo risorse stesso origin e compilazione Wasm.
+Ambiente: PowerShell, Node v25.2.1, Python 3.10.6, HeadlessChrome 155. Script automatici senza dipendenze npm aggiuntive. I test headless utilizzano un profilo temporaneo con --no-sandbox nel contesto ristretto di esecuzione; questo non è un requisito dell'app iPhone.
 
-Caching di binari molto grandi, memoria di compilazione, tempi al primo avvio e chiusura dei worker sono i rischi principali su Safari. Non sono state misurate quote o prestazioni e non si presume compatibilità in base ai soli test desktop. La cache può essere rimossa dal sistema: l'utilizzo indefinito offline non è garantito. Aggiornamenti atomici/versionati e persistenza progetti non sono implementati in questo prototipo.
+- Terminale e creazione/lettura/cancellazione file sentinella: PASS, ripetuti dopo la riparazione.
+- npm run check: controlla sintassi JS, inventario casi, presenza e integrità degli asset.
+- npm run test:browser: compila/esegue la suite e verifica i log tramite i pulsanti reali della pagina.
+- npm run test:offline: prepara la cache, disabilita la rete tramite DevTools, spegne il server HTTP locale e ricarica la pagina prima della suite e dei test UI.
+- Report: reports/windows-chrome-browsercc-online.json, reports/windows-chrome-binji-online.json e i corrispondenti file offline. Ogni report include sorgenti, input, output, diagnostica, tempi e controlli UI.
+- Nuovi casi: warning variabile inutilizzata, parametro inutilizzato, formato printf errato in funzione non eseguita; errore sintattico con posizione; sezioni debug; divisione per zero e trap fuori memoria con output precedente preservato.
+- Test UI: warning visibile dopo successo, errore C libero leggibile, output preservato durante crash, nuova esecuzione dopo crash, testo non interpretato come HTML e arresto manuale.
+- Screenshot verificato a viewport mobile di 390 pixel: reports/diagnostics-mobile-chrome.png. È una verifica visiva su Chrome, non una prova Safari iOS.
+- Integrità della distribuzione: gli hash degli asset testuali nel commit Git iniziale coincidono con quelli del manifest; nessuna modifica ai binari o alle licenze delle dipendenze.
 
-## Prossimo passo concreto
+## Problemi risolti
 
-Creare/collegare il repository GitHub e pubblicare il banco di prova su Pages. Eseguire [la verifica iPhone offline](docs/IPHONE-OFFLINE.md), inclusa installazione Home, nuova compilazione, avvio a freddo e modalità aereo. Per ogni toolchain premere Prepara offline mentre è selezionata. Conservare report iPhone distinti da Windows. La Fase 1 sarà conclusa solo con evidenze sul dispositivo reale; non iniziare l'interfaccia completa prima di quel risultato. I test di salvataggio/riapertura programmi richiesti per le fasi successive sono ancora da realizzare insieme alla relativa funzione.
+### Preparazione della preview
+
+- Build dist/pages-preview: 57 file della versione principale identici byte per byte al commit main a5ff1b9da06cd40e01076efb372379f76cb2775a; 60 file preview verificati tramite SHA-256. Nessun duplicato del pacchetto generato entra in Git (dist/ ignorata).
+- Test Windows sul prefisso /c-pocket-lab/preview/: 17/17 casi C e 5/5 controlli UI passano con entrambe le toolchain sia online sia offline.
+- 5/5 controlli di isolamento passano sia online sia offline: app principale prima/dopo, scope/cache/manifest distinti, cache principale invariata e file principali identici a main. Nel caso offline il server è spento e la rete DevTools è disabilitata.
+- Nuovo helper offline usa la registrazione della pagina corrente; la cache include il percorso nello spazio dei nomi. Preview e principale restano sullo stesso origin e condividono la quota storage del browser.
+- Workflow separato per preview/diagnostics con test prima del deploy e controllo finale che main non sia cambiato. Guard sul workflow principale impedisce avvio manuale della release da un branch preview.
+- I nuovi risultati iPhone della preview non sono ancora disponibili. Nessuna promozione automatica a main.
+
+All'inizio Git/curl/npm non potevano raggiungere Internet dal sandbox. L'utente ha eseguito npm run acquire nel proprio PowerShell e acquisito i 47 asset. Il controllo completo falliva correttamente prima di tale acquisizione.
+
+Dopo la creazione del repository il sandbox non poteva aggiornare l'ACL della cartella .git, creata con un utente diverso. Il log indicava READ_CONTROL | WRITE_DAC negato. La proprietà della sola cartella .git è stata ripristinata tramite takeown; terminale e scrittura sono ora nuovamente verificati.
+
+I trattini lunghi nei file del progetto sono rimossi. Le licenze e i sorgenti delle dipendenze restano integri.
+
+## Limiti e prossimi passi
+
+stdin è precaricato prima dell'avvio: non è implementato input interattivo mentre scanf è sospeso. Il filesystem C è virtuale e in RAM; il test file non dimostra persistenza fra esecuzioni. Nel runtime binji stderr e stdout del programma sono mescolati. Lo stdout non viene mostrato in streaming durante un programma ancora in esecuzione.
+
+La cache può essere rimossa da iOS o dall'utente. Dopo questo aggiornamento aprire online e ripetere Prepara offline prima di tornare in modalità aereo. Riavvio dispositivo, conservazione per giorni, pressione disco e memoria restano verifiche separate.
+
+Repo: https://github.com/GianlucaMancuso/c-pocket-lab
+Pages: https://gianlucamancuso.github.io/c-pocket-lab/
+
+Prossimo passo: caricare solo il branch preview/diagnostics, attendere il workflow e ripetere i 17 casi su iPhone dal percorso /preview/, online e offline. Controllare VERSIONE DI PROVA, Diagnostica studio v1 e channel preview nei report. Verificare anche che l'icona principale continui a compilare offline. Conservare i nuovi report separati dai precedenti. Nessun nuovo risultato iPhone viene dedotto dai test Windows; la release principale resta sospesa.
+
+Salvataggio/riapertura programmi, editor con evidenziazione, libreria esercizi e modalità esame restano da sviluppare nelle fasi successive. Non è dichiarato supporto generale a tutte le librerie C, syscall WASI, thread, processi o networking.

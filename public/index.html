@@ -7,11 +7,12 @@
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icon.svg">
 <link rel="stylesheet" href="./style.css">
-<title>C Pocket Lab — Fase 1</title>
-<h1>C Pocket Lab — banco di prova</h1>
-<p>Vero Clang locale. Testato su Chrome Windows anche offline; verifica Safari iPhone ancora necessaria.</p>
+<title>C Pocket Lab - Fase 1</title>
+<h1>C Pocket Lab - banco di prova</h1>
+<p>Vero Clang locale. Il prototipo binji ha passato i test online e offline su iPhone iOS 18.5. La nuova diagnostica va verificata anche su iPhone.</p>
+<p id="build-info">Diagnostica studio v1: C11, -O0 -g -Wall -Wextra -Wpedantic -Wformat=2. Nessun AddressSanitizer attivo.</p>
 <label for="engine">Compilatore</label>
-<select id="engine"><option value="binji">binji/wasm-clang — 58 MiB</option><option value="browsercc">browsercc — 90 MiB</option></select>
+<select id="engine"><option value="binji">binji/wasm-clang - 58 MiB</option><option value="browsercc">browsercc - 90 MiB</option></select>
 <label for="source">Codice C</label>
 <textarea id="source" rows="12" spellcheck="false" autocapitalize="off" autocorrect="off">#include &lt;stdio.h&gt;
 
@@ -26,7 +27,14 @@ int main(void) {
 <textarea id="stdin" rows="2" spellcheck="false" autocapitalize="off" autocorrect="off">21</textarea>
 <button id="compile">Compila ed esegui</button>
 <button id="stop" disabled>Arresta</button>
+<h2>Diagnostica compilatore</h2>
+<p>Warning e errori originali con file, riga, colonna e indicatore ^. I warning restano visibili anche se il programma parte.</p>
+<pre id="diagnostics" aria-label="Diagnostica compilatore" tabindex="0">In attesa della compilazione.</pre>
+<h2>Output del programma</h2>
 <pre id="output" aria-label="Output programma" tabindex="0">Output del programma</pre>
+<h2>Errori durante l'esecuzione</h2>
+<p>Gli stack Wasm possono contenere funzioni e offset, senza la riga C. I controlli Wasm non rilevano tutti gli errori di memoria del C.</p>
+<pre id="runtime-errors" aria-label="Errori di esecuzione" tabindex="0">Nessuna esecuzione.</pre>
 <hr>
 <button id="run">Esegui test C</button>
 <button id="offline">Prepara offline</button>

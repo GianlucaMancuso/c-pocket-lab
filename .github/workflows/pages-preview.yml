@@ -1,0 +1,47 @@
+name: Preview diagnostics without changing production
+on:
+  push:
+    branches: [preview/diagnostics]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  preview:
+    if: github.ref == 'refs/heads/preview/diagnostics'
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}preview/
+    env:
+      CHROME_PATH: google-chrome
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify local compiler assets
+        run: npm run check
+      - name: Build isolated preview and preserve main byte for byte
+        run: npm run build:preview
+      - name: Test preview with the production service worker already installed
+        run: npm run test:preview
+      - name: Test preview and original app with network and local server disabled
+        run: npm run test:preview:offline
+      - name: Refuse publication if main changed during tests
+        run: |
+          git fetch --no-tags origin main:refs/remotes/origin/main
+          npm run check:preview
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/pages-preview
+      - name: Publish original app plus isolated preview
+        id: deployment
+        uses: actions/deploy-pages@v5

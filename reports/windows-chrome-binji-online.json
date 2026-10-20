@@ -1,23 +1,40 @@
 {
   "engine": "binji",
-  "date": "2026-10-20T06:11:30.927Z",
+  "build": "study-diagnostics-v1",
+  "date": "2026-10-20T06:48:05.021Z",
   "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
   "standalone": false,
   "online": true,
+  "onlineAtStart": true,
   "results": [
     {
       "id": "printf",
-      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",236599);return 0;}",
+      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",348750);return 0;}",
       "stdin": "",
-      "expected": "hello 236599\n",
+      "expected": "hello 348750\n",
       "expectedExitCode": 0,
       "status": "PASS",
-      "stdout": "hello 236599\n",
+      "stdout": "hello 348750\n",
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
-      "ms": 286.89999999990687
+      "debug": {
+        "infoBytes": 65,
+        "lineBytes": 64,
+        "nameBytes": 770
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:54: warning: no newline at end of file [-Wnewline-eof]\nint main(void){printf(\"hello %d\\n\",348750);return 0;}\n                                                     ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 54,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 298.90000000037253
     },
     {
       "id": "scanf",
@@ -30,8 +47,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
-      "ms": 321.20000000018626
+      "debug": {
+        "infoBytes": 120,
+        "lineBytes": 92,
+        "nameBytes": 1007
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:104: warning: no newline at end of file [-Wnewline-eof]\nint main(void){int n;char s[16];if(scanf(\"%d %15s\",&n,s)!=2)return 1;printf(\"%d %s\\n\",n+1,s);return 0;}\n                                                                                                       ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 104,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 324.90000000037253
     },
     {
       "id": "loops-functions-arrays",
@@ -44,8 +76,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
-      "ms": 327.60000000009313
+      "debug": {
+        "infoBytes": 209,
+        "lineBytes": 175,
+        "nameBytes": 775
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:3:112: warning: no newline at end of file [-Wnewline-eof]\nint main(void){int a[]={2,4,6};int n=0;while(n<3)n++;do{n--;}while(n>3);printf(\"%d %d\\n\",sum(a,3),n);return 0;}\n                                                                                                               ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 112,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 326
     },
     {
       "id": "strings-pointers-struct",
@@ -58,8 +105,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
-      "ms": 359.40000000037253
+      "debug": {
+        "infoBytes": 191,
+        "lineBytes": 101,
+        "nameBytes": 796
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:4:184: warning: no newline at end of file [-Wnewline-eof]\nint main(void){struct Item a={7,\"pocket\"};struct Item *p=&a;char b[32];strcpy(b,p->name);strcat(b,\" C\");p->value+=2;printf(\"%s %d %lu\\n\",b,a.value,(unsigned long)strlen(b));return 0;}\n                                                                                                                                                                                       ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 4,
+          "column": 184,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 328.8999999994412
     },
     {
       "id": "malloc-free",
@@ -72,8 +134,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
-      "ms": 315.40000000037253
+      "debug": {
+        "infoBytes": 143,
+        "lineBytes": 171,
+        "nameBytes": 770
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:3:175: warning: no newline at end of file [-Wnewline-eof]\nint main(void){for(int k=0;k<32;k++){int *p=malloc(256*sizeof *p);if(!p)return 1;for(int i=0;i<256;i++)p[i]=i;if(p[255]!=255)return 2;free(p);}printf(\"alloc ok\\n\");return 0;}\n                                                                                                                                                                              ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 175,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 304.20000000018626
     },
     {
       "id": "files",
@@ -88,8 +165,23 @@
       "files": {
         "data.txt": "73 pocket\n"
       },
-      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
-      "ms": 323.8000000002794
+      "debug": {
+        "infoBytes": 156,
+        "lineBytes": 253,
+        "nameBytes": 1199
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:3:322: warning: no newline at end of file [-Wnewline-eof]\nint main(void){FILE *f=fopen(\"data.txt\",\"w\");if(!f)return 1;if(fprintf(f,\"%d %s\\n\",73,\"pocket\")!=10)return 2;if(fclose(f))return 3;f=fopen(\"data.txt\",\"r\");if(!f)return 4;int n=0;char s[16];if(fscanf(f,\"%d %15s\",&n,s)!=2)return 5;if(fclose(f))return 6;if(n!=73||strcmp(s,\"pocket\"))return 7;printf(\"%d %s\\n\",n,s);return 0;}\n                                                                                                                                                                                                                                                                                                                                 ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 322,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 326.5
     },
     {
       "id": "scanf-eof",
@@ -102,8 +194,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
-      "ms": 317.90000000037253
+      "debug": {
+        "infoBytes": 80,
+        "lineBytes": 74,
+        "nameBytes": 1007
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:67: warning: no newline at end of file [-Wnewline-eof]\nint main(void){int n;printf(\"%d\\n\",scanf(\"%d\",&n)==EOF);return 0;}\n                                                                  ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 67,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 311.6000000005588
     },
     {
       "id": "compile-error",
@@ -112,8 +219,27 @@
       "expectedExitCode": 0,
       "status": "PASS",
       "compileError": true,
-      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\u001b[1mmain.c:1:17: \u001b[0m\u001b[0;1;31merror: \u001b[0m\u001b[1muse of undeclared identifier 'this'\u001b[0m\nint main(void){ this is invalid C; }\n\u001b[0;1;32m                ^\n\u001b[0m1 error generated.\n\u001b[91mError: process exited with code 1.\u001b[0m\nError: process exited with code 1.",
-      "ms": 152
+      "stage": "compile",
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:1:17: error: use of undeclared identifier 'this'\nint main(void){ this is invalid C; }\n                ^\nmain.c:1:37: warning: no newline at end of file [-Wnewline-eof]\nint main(void){ this is invalid C; }\n                                    ^\n1 warning and 1 error generated.\nError: process exited with code 1.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 1,
+          "column": 17,
+          "severity": "error",
+          "message": "use of undeclared identifier 'this'",
+          "option": null
+        },
+        {
+          "file": "main.c",
+          "line": 1,
+          "column": 37,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 153.40000000037253
     },
     {
       "id": "exit-status",
@@ -126,8 +252,23 @@
       "stderr": "",
       "exitCode": 7,
       "files": {},
-      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
-      "ms": 242.90000000037253
+      "debug": {
+        "infoBytes": 65,
+        "lineBytes": 59,
+        "nameBytes": 429
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:1:26: warning: no newline at end of file [-Wnewline-eof]\nint main(void){return 7;}\n                         ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 1,
+          "column": 26,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 286.90000000037253
     },
     {
       "id": "timeout",
@@ -136,6 +277,372 @@
       "expectedExitCode": 0,
       "status": "PASS",
       "reason": "execution timeout"
+    },
+    {
+      "id": "warning-unused-variable",
+      "source": "int main(void) {\n    int unused = 42;\n    return 0;\n}",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "debug": {
+        "infoBytes": 80,
+        "lineBytes": 62,
+        "nameBytes": 429
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n}\n ^\nmain.c:2:9: warning: unused variable 'unused' [-Wunused-variable]\n    int unused = 42;\n        ^\n2 warnings generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 4,
+          "column": 2,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        },
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 9,
+          "severity": "warning",
+          "message": "unused variable 'unused' [-Wunused-variable]",
+          "option": "-Wunused-variable"
+        }
+      ],
+      "ms": 194.70000000018626
+    },
+    {
+      "id": "warning-unused-parameter",
+      "source": "int twice(int n, int unused) { return n * 2; }\nint main(void) { return twice(3, 0) - 6; }",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "debug": {
+        "infoBytes": 113,
+        "lineBytes": 92,
+        "nameBytes": 436
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:1:22: warning: unused parameter 'unused' [-Wunused-parameter]\nint twice(int n, int unused) { return n * 2; }\n                     ^\nmain.c:2:43: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { return twice(3, 0) - 6; }\n                                          ^\n2 warnings generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 1,
+          "column": 22,
+          "severity": "warning",
+          "message": "unused parameter 'unused' [-Wunused-parameter]",
+          "option": "-Wunused-parameter"
+        },
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 43,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 204.1000000005588
+    },
+    {
+      "id": "warning-printf-format",
+      "source": "#include <stdio.h>\nvoid example(void) { printf(\"%d\", \"wrong\"); }\nint main(void) { return 0; }",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "debug": {
+        "infoBytes": 80,
+        "lineBytes": 82,
+        "nameBytes": 779
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:35: warning: format specifies type 'int' but the argument has type 'char *' [-Wformat]\nvoid example(void) { printf(\"%d\", \"wrong\"); }\n                             ~~   ^~~~~~~\n                             %s\nmain.c:3:29: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { return 0; }\n                            ^\n2 warnings generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 35,
+          "severity": "warning",
+          "message": "format specifies type 'int' but the argument has type 'char *' [-Wformat]",
+          "option": "-Wformat"
+        },
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 29,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 229.29999999981374
+    },
+    {
+      "id": "syntax-location",
+      "source": "int main(void) {\n    int n = ;\n    return n;\n}",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "compileError": true,
+      "stage": "compile",
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:13: error: expected expression\n    int n = ;\n            ^\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n}\n ^\n1 warning and 1 error generated.\nError: process exited with code 1.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 13,
+          "severity": "error",
+          "message": "expected expression",
+          "option": null
+        },
+        {
+          "file": "main.c",
+          "line": 4,
+          "column": 2,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 127.20000000018626
+    },
+    {
+      "id": "debug-symbols",
+      "source": "int square(int n) { return n * n; }\nint main(void) { return square(3) - 9; }",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "debug": {
+        "infoBytes": 99,
+        "lineBytes": 94,
+        "nameBytes": 437
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:41: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { return square(3) - 9; }\n                                        ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 41,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 185.19999999925494
+    },
+    {
+      "id": "runtime-divide-zero",
+      "source": "#include <stdio.h>\nint main(void) { volatile int divisor = 0; printf(\"before crash\\n\"); fflush(stdout); return 10 / divisor; }",
+      "stdin": "",
+      "expected": "before crash\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "before crash\n",
+      "stderr": "",
+      "exitCode": null,
+      "files": {},
+      "runtimeError": {
+        "name": "RuntimeError",
+        "message": "divide by zero",
+        "stack": "RuntimeError: divide by zero\n    at __original_main (wasm://wasm/0001f44e:wasm-function[13]:0x47f)\n    at main (wasm://wasm/0001f44e:wasm-function[14]:0x49d)\n    at _start (wasm://wasm/0001f44e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:61524/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:61524/worker.js:123:20)"
+      },
+      "debug": {
+        "infoBytes": 85,
+        "lineBytes": 79,
+        "nameBytes": 792
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:108: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { volatile int divisor = 0; printf(\"before crash\\n\"); fflush(stdout); return 10 / divisor; }\n                                                                                                           ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 108,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 205.20000000018626
+    },
+    {
+      "id": "runtime-memory-bounds",
+      "source": "#include <stdio.h>\n#include <stdint.h>\nint main(void) { volatile uintptr_t address = 0xffffffffu; printf(\"before crash\\n\"); fflush(stdout); return *(volatile unsigned char *)address; }",
+      "stdin": "",
+      "expected": "before crash\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "before crash\n",
+      "stderr": "",
+      "exitCode": null,
+      "files": {},
+      "runtimeError": {
+        "name": "RuntimeError",
+        "message": "memory access out of bounds",
+        "stack": "RuntimeError: memory access out of bounds\n    at __original_main (wasm://wasm/0001f67e:wasm-function[13]:0x47d)\n    at main (wasm://wasm/0001f67e:wasm-function[14]:0x4a9)\n    at _start (wasm://wasm/0001f67e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:61524/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:61524/worker.js:123:20)"
+      },
+      "debug": {
+        "infoBytes": 120,
+        "lineBytes": 109,
+        "nameBytes": 792
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:3:146: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { volatile uintptr_t address = 0xffffffffu; printf(\"before crash\\n\"); fflush(stdout); return *(volatile unsigned char *)address; }\n                                                                                                                                                 ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 146,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 198.29999999981374
+    }
+  ],
+  "sanitizerProbes": [
+    {
+      "id": "probe-asan",
+      "source": "#include <stdio.h>\n#include <limits.h>\nint main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "COMPILE_ERROR",
+      "compileError": true,
+      "stage": "link",
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -fsanitize=address -o main.o -x c -std=c11 main.c\nmain.c:3:104: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }\n                                                                                                       ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\nwasm-ld: error: main.o: undefined symbol: __asan_option_detect_stack_use_after_return\nwasm-ld: error: main.o: undefined symbol: __asan_stack_malloc_0\nwasm-ld: error: main.o: undefined symbol: __asan_report_store4\nwasm-ld: error: main.o: undefined symbol: __asan_report_load4\nwasm-ld: error: main.o: undefined symbol: __asan_init\nwasm-ld: error: main.o: undefined symbol: __asan_version_mismatch_check_v8\nwasm-ld: error: main.o: undefined symbol: __asan_register_globals\nwasm-ld: error: main.o: undefined symbol: __asan_unregister_globals\nError: process exited with code 1.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 104,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 213
+    },
+    {
+      "id": "probe-ubsan",
+      "source": "#include <stdio.h>\n#include <limits.h>\nint main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "COMPILE_ERROR",
+      "compileError": true,
+      "stage": "link",
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -fsanitize=signed-integer-overflow,integer-divide-by-zero,shift-base,shift-exponent,null,alignment,array-bounds -o main.o -x c -std=c11 main.c\nmain.c:3:104: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }\n                                                                                                       ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\nwasm-ld: error: main.o: undefined symbol: __ubsan_handle_add_overflow_abort\nError: process exited with code 1.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 104,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 185.5
+    },
+    {
+      "id": "probe-ubsan-trap",
+      "source": "#include <stdio.h>\n#include <limits.h>\nint main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "RUNTIME_ERROR",
+      "stdout": "before overflow\n",
+      "stderr": "",
+      "exitCode": null,
+      "files": {},
+      "runtimeError": {
+        "name": "RuntimeError",
+        "message": "unreachable",
+        "stack": "RuntimeError: unreachable\n    at __original_main (wasm://wasm/0001f59e:wasm-function[13]:0x4c6)\n    at main (wasm://wasm/0001f59e:wasm-function[14]:0x4e4)\n    at _start (wasm://wasm/0001f59e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:61524/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:61524/worker.js:123:20)"
+      },
+      "debug": {
+        "infoBytes": 85,
+        "lineBytes": 82,
+        "nameBytes": 792
+      },
+      "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -fsanitize=signed-integer-overflow,integer-divide-by-zero,shift-base,shift-exponent,null,alignment,array-bounds -fsanitize-trap=signed-integer-overflow,integer-divide-by-zero,shift-base,shift-exponent,null,alignment,array-bounds -o main.o -x c -std=c11 main.c\nmain.c:3:104: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }\n                                                                                                       ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 104,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 190.5
+    }
+  ],
+  "uiChecks": [
+    {
+      "id": "warning-visible-after-success",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n}\n ^\nmain.c:2:9: warning: unused variable 'unused' [-Wunused-variable]\n    int unused = 42;\n        ^\n2 warnings generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+        "output": "Nessun output.",
+        "runtime": "Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.",
+        "status": "Esecuzione completata | 2 warning | exit 0 | 242 ms"
+      }
+    },
+    {
+      "id": "manual-compile-error-visible",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:13: error: expected expression\n    int n = ;\n            ^\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n}\n ^\n1 warning and 1 error generated.\nError: process exited with code 1.\n",
+        "output": "Programma non eseguito: correggi gli errori di compilazione.",
+        "runtime": "Esecuzione non avviata.",
+        "status": "Compilazione fallita | 1 warning | 148 ms"
+      }
+    },
+    {
+      "id": "runtime-error-keeps-output",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\nmain.c:2:108: warning: no newline at end of file [-Wnewline-eof]\nint main(void) { volatile int divisor = 0; printf(\"before crash\\n\"); fflush(stdout); return 10 / divisor; }\n                                                                                                           ^\n1 warning generated.\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+        "output": "before crash\n",
+        "runtime": "WebAssembly ha interrotto una divisione intera per zero.\n\nRuntimeError: divide by zero\n    at __original_main (wasm://wasm/0001f44e:wasm-function[13]:0x47f)\n    at main (wasm://wasm/0001f44e:wasm-function[14]:0x49d)\n    at _start (wasm://wasm/0001f44e:wasm-function[12]:0x3c7)\n    at binji (http://127.0.0.1:61524/worker.js:108:21)\n    at async self.onmessage (http://127.0.0.1:61524/worker.js:123:20)",
+        "status": "Errore durante esecuzione | 1 warning | 297 ms"
+      }
+    },
+    {
+      "id": "recovery-and-output-as-text",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "> Untarring ./vendor/binji/sysroot.tar... done.\n> Fetching and compiling ./vendor/binji/clang... done.\n> clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -O0 -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fmessage-length 0 -debug-info-kind=limited -dwarf-version=4 -dwarf-column-info -o main.o -x c -std=c11 main.c\n\n> Fetching and compiling ./vendor/binji/lld... done.\n> wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+        "output": "<b>recovery</b>\n",
+        "runtime": "Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.",
+        "status": "Esecuzione completata | exit 0 | 283 ms"
+      }
+    },
+    {
+      "id": "stop-infinite-program",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "Nessun messaggio dal compilatore.",
+        "output": "Nessun output.",
+        "runtime": "Arrestato dall’utente",
+        "status": "Arrestato"
+      }
     }
   ],
   "testHost": {

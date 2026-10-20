@@ -1,23 +1,40 @@
 {
   "engine": "browsercc",
-  "date": "2026-10-20T06:11:25.953Z",
+  "build": "study-diagnostics-v1",
+  "date": "2026-10-20T06:47:54.552Z",
   "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
   "standalone": false,
   "online": true,
+  "onlineAtStart": true,
   "results": [
     {
       "id": "printf",
-      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",277061);return 0;}",
+      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",447743);return 0;}",
       "stdin": "",
-      "expected": "hello 277061\n",
+      "expected": "hello 447743\n",
       "expectedExitCode": 0,
       "status": "PASS",
-      "stdout": "hello 277061\n",
+      "stdout": "hello 447743\n",
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "",
-      "ms": 538.1000000000931
+      "debug": {
+        "infoBytes": 28067,
+        "lineBytes": 22619,
+        "nameBytes": 828
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:54: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void){printf(\"hello %d\\n\",447743);return 0;}\n      |                                                      ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 54,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 536.7000000001863
     },
     {
       "id": "scanf",
@@ -30,8 +47,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "",
-      "ms": 590.7000000001863
+      "debug": {
+        "infoBytes": 50271,
+        "lineBytes": 45584,
+        "nameBytes": 1165
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:104: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void){int n;char s[16];if(scanf(\"%d %15s\",&n,s)!=2)return 1;printf(\"%d %s\\n\",n+1,s);return 0;}\n      |                                                                                                        ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 104,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 569.5999999996275
     },
     {
       "id": "loops-functions-arrays",
@@ -44,8 +76,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "",
-      "ms": 593.3999999999069
+      "debug": {
+        "infoBytes": 28209,
+        "lineBytes": 22728,
+        "nameBytes": 833
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:3:112: warning: no newline at end of file [-Wnewline-eof]\n    3 | int main(void){int a[]={2,4,6};int n=0;while(n<3)n++;do{n--;}while(n>3);printf(\"%d %d\\n\",sum(a,3),n);return 0;}\n      |                                                                                                                ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 112,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 599.0999999996275
     },
     {
       "id": "strings-pointers-struct",
@@ -58,8 +105,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "",
-      "ms": 669.6000000000931
+      "debug": {
+        "infoBytes": 28782,
+        "lineBytes": 23567,
+        "nameBytes": 854
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:4:184: warning: no newline at end of file [-Wnewline-eof]\n    4 | int main(void){struct Item a={7,\"pocket\"};struct Item *p=&a;char b[32];strcpy(b,p->name);strcat(b,\" C\");p->value+=2;printf(\"%s %d %lu\\n\",b,a.value,(unsigned long)strlen(b));return 0;}\n      |                                                                                                                                                                                        ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 4,
+          "column": 184,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 643.2999999998137
     },
     {
       "id": "malloc-free",
@@ -72,8 +134,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "",
-      "ms": 592.3999999999069
+      "debug": {
+        "infoBytes": 38602,
+        "lineBytes": 30380,
+        "nameBytes": 881
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:3:175: warning: no newline at end of file [-Wnewline-eof]\n    3 | int main(void){for(int k=0;k<32;k++){int *p=malloc(256*sizeof *p);if(!p)return 1;for(int i=0;i<256;i++)p[i]=i;if(p[255]!=255)return 2;free(p);}printf(\"alloc ok\\n\");return 0;}\n      |                                                                                                                                                                               ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 175,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 593.5
     },
     {
       "id": "files",
@@ -88,8 +165,23 @@
       "files": {
         "data.txt": "73 pocket\n"
       },
-      "diagnostics": "",
-      "ms": 608.2000000001863
+      "debug": {
+        "infoBytes": 77887,
+        "lineBytes": 69103,
+        "nameBytes": 1808
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:3:322: warning: no newline at end of file [-Wnewline-eof]\n    3 | int main(void){FILE *f=fopen(\"data.txt\",\"w\");if(!f)return 1;if(fprintf(f,\"%d %s\\n\",73,\"pocket\")!=10)return 2;if(fclose(f))return 3;f=fopen(\"data.txt\",\"r\");if(!f)return 4;int n=0;char s[16];if(fscanf(f,\"%d %15s\",&n,s)!=2)return 5;if(fclose(f))return 6;if(n!=73||strcmp(s,\"pocket\"))return 7;printf(\"%d %s\\n\",n,s);return 0;}\n      |                                                                                                                                                                                                                                                                                                                                  ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 322,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 613.5
     },
     {
       "id": "scanf-eof",
@@ -102,8 +194,23 @@
       "stderr": "",
       "exitCode": 0,
       "files": {},
-      "diagnostics": "",
-      "ms": 607.3999999999069
+      "debug": {
+        "infoBytes": 50245,
+        "lineBytes": 45565,
+        "nameBytes": 1165
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:67: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void){int n;printf(\"%d\\n\",scanf(\"%d\",&n)==EOF);return 0;}\n      |                                                                   ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 67,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 595.5999999996275
     },
     {
       "id": "compile-error",
@@ -112,8 +219,26 @@
       "expectedExitCode": 0,
       "status": "PASS",
       "compileError": true,
-      "diagnostics": "main.c:1:17: error: use of undeclared identifier 'this'\n    1 | int main(void){ this is invalid C; }\n      |                 ^\n1 error generated.\n",
-      "ms": 396.1999999997206
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:1:17: error: use of undeclared identifier 'this'\n    1 | int main(void){ this is invalid C; }\n      |                 ^\nmain.c:1:37: warning: no newline at end of file [-Wnewline-eof]\n    1 | int main(void){ this is invalid C; }\n      |                                     ^\n1 warning and 1 error generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 1,
+          "column": 17,
+          "severity": "error",
+          "message": "use of undeclared identifier 'this'",
+          "option": null
+        },
+        {
+          "file": "main.c",
+          "line": 1,
+          "column": 37,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 404.70000000018626
     },
     {
       "id": "exit-status",
@@ -126,8 +251,23 @@
       "stderr": "",
       "exitCode": 7,
       "files": {},
-      "diagnostics": "",
-      "ms": 485.5
+      "debug": {
+        "infoBytes": 8509,
+        "lineBytes": 3067,
+        "nameBytes": 198
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:1:26: warning: no newline at end of file [-Wnewline-eof]\n    1 | int main(void){return 7;}\n      |                          ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 1,
+          "column": 26,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 495.59999999962747
     },
     {
       "id": "timeout",
@@ -136,6 +276,361 @@
       "expectedExitCode": 0,
       "status": "PASS",
       "reason": "execution timeout"
+    },
+    {
+      "id": "warning-unused-variable",
+      "source": "int main(void) {\n    int unused = 42;\n    return 0;\n}",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "debug": {
+        "infoBytes": 8524,
+        "lineBytes": 3070,
+        "nameBytes": 198
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n    4 | }\n      |  ^\nmain.c:2:9: warning: unused variable 'unused' [-Wunused-variable]\n    2 |     int unused = 42;\n      |         ^~~~~~\n2 warnings generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 4,
+          "column": 2,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        },
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 9,
+          "severity": "warning",
+          "message": "unused variable 'unused' [-Wunused-variable]",
+          "option": "-Wunused-variable"
+        }
+      ],
+      "ms": 364.90000000037253
+    },
+    {
+      "id": "warning-unused-parameter",
+      "source": "int twice(int n, int unused) { return n * 2; }\nint main(void) { return twice(3, 0) - 6; }",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "debug": {
+        "infoBytes": 8562,
+        "lineBytes": 3102,
+        "nameBytes": 205
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:1:22: warning: unused parameter 'unused' [-Wunused-parameter]\n    1 | int twice(int n, int unused) { return n * 2; }\n      |                      ^\nmain.c:2:43: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void) { return twice(3, 0) - 6; }\n      |                                           ^\n2 warnings generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 1,
+          "column": 22,
+          "severity": "warning",
+          "message": "unused parameter 'unused' [-Wunused-parameter]",
+          "option": "-Wunused-parameter"
+        },
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 43,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 341.09999999962747
+    },
+    {
+      "id": "warning-printf-format",
+      "source": "#include <stdio.h>\nvoid example(void) { printf(\"%d\", \"wrong\"); }\nint main(void) { return 0; }",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "debug": {
+        "infoBytes": 28112,
+        "lineBytes": 22637,
+        "nameBytes": 610
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:35: warning: format specifies type 'int' but the argument has type 'char *' [-Wformat]\n    2 | void example(void) { printf(\"%d\", \"wrong\"); }\n      |                              ~~   ^~~~~~~\n      |                              %s\nmain.c:3:29: warning: no newline at end of file [-Wnewline-eof]\n    3 | int main(void) { return 0; }\n      |                             ^\n2 warnings generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 35,
+          "severity": "warning",
+          "message": "format specifies type 'int' but the argument has type 'char *' [-Wformat]",
+          "option": "-Wformat"
+        },
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 29,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 416.79999999981374
+    },
+    {
+      "id": "syntax-location",
+      "source": "int main(void) {\n    int n = ;\n    return n;\n}",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "compileError": true,
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:13: error: expected expression\n    2 |     int n = ;\n      |             ^\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n    4 | }\n      |  ^\n1 warning and 1 error generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 13,
+          "severity": "error",
+          "message": "expected expression",
+          "option": null
+        },
+        {
+          "file": "main.c",
+          "line": 4,
+          "column": 2,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 455.8999999994412
+    },
+    {
+      "id": "debug-symbols",
+      "source": "int square(int n) { return n * n; }\nint main(void) { return square(3) - 9; }",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "debug": {
+        "infoBytes": 8548,
+        "lineBytes": 3103,
+        "nameBytes": 206
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:41: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void) { return square(3) - 9; }\n      |                                         ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 41,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 373.79999999981374
+    },
+    {
+      "id": "runtime-divide-zero",
+      "source": "#include <stdio.h>\nint main(void) { volatile int divisor = 0; printf(\"before crash\\n\"); fflush(stdout); return 10 / divisor; }",
+      "stdin": "",
+      "expected": "before crash\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "before crash\n",
+      "stderr": "",
+      "exitCode": null,
+      "files": {},
+      "runtimeError": {
+        "name": "RuntimeError",
+        "message": "divide by zero",
+        "stack": "RuntimeError: divide by zero\n    at a.out.__original_main (wasm://wasm/a.out-00062d6a:wasm-function[7]:0x248)\n    at a.out._start (wasm://wasm/a.out-00062d6a:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:61524/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:61524/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:61524/worker.js:123:20)"
+      },
+      "debug": {
+        "infoBytes": 28828,
+        "lineBytes": 23228,
+        "nameBytes": 850
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:108: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void) { volatile int divisor = 0; printf(\"before crash\\n\"); fflush(stdout); return 10 / divisor; }\n      |                                                                                                            ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 2,
+          "column": 108,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 553.4000000003725
+    },
+    {
+      "id": "runtime-memory-bounds",
+      "source": "#include <stdio.h>\n#include <stdint.h>\nint main(void) { volatile uintptr_t address = 0xffffffffu; printf(\"before crash\\n\"); fflush(stdout); return *(volatile unsigned char *)address; }",
+      "stdin": "",
+      "expected": "before crash\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "before crash\n",
+      "stderr": "",
+      "exitCode": null,
+      "files": {},
+      "runtimeError": {
+        "name": "RuntimeError",
+        "message": "memory access out of bounds",
+        "stack": "RuntimeError: memory access out of bounds\n    at a.out.__original_main (wasm://wasm/a.out-00062f0e:wasm-function[7]:0x242)\n    at a.out._start (wasm://wasm/a.out-00062f0e:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:61524/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:61524/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:61524/worker.js:123:20)"
+      },
+      "debug": {
+        "infoBytes": 28863,
+        "lineBytes": 23270,
+        "nameBytes": 850
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:3:146: warning: no newline at end of file [-Wnewline-eof]\n    3 | int main(void) { volatile uintptr_t address = 0xffffffffu; printf(\"before crash\\n\"); fflush(stdout); return *(volatile unsigned char *)address; }\n      |                                                                                                                                                  ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 146,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 557.2999999998137
+    }
+  ],
+  "sanitizerProbes": [
+    {
+      "id": "probe-asan",
+      "source": "#include <stdio.h>\n#include <limits.h>\nint main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "COMPILE_ERROR",
+      "compileError": true,
+      "stage": "driver",
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 -fsanitize=address main.c -o main.wasm\nclang version 20.1.2 (https://github.com/llvm/llvm-project.git 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)\nTarget: wasm32-unknown-wasi\nThread model: posix\nInstalledDir: \nclang++: error: unsupported option '-fsanitize=address' for target 'wasm32-unknown-wasi'\n \"\" \"-cc1\" \"-triple\" \"wasm32-unknown-wasi\" \"-emit-obj\" \"-dumpdir\" \"a-\" \"-disable-free\" \"-clear-ast-before-backend\" \"-disable-llvm-verifier\" \"-discard-value-names\" \"-main-file-name\" \"main.c\" \"-mrelocation-model\" \"static\" \"-mframe-pointer=none\" \"-ffp-contract=on\" \"-fno-rounding-math\" \"-mconstructor-aliases\" \"-target-cpu\" \"generic\" \"-fvisibility=hidden\" \"-debug-info-kind=constructor\" \"-dwarf-version=4\" \"-debugger-tuning=gdb\" \"-fdebug-compilation-dir=/\" \"-fcoverage-compilation-dir=/\" \"-resource-dir\" \"lib/clang/20\" \"-internal-isystem\" \"lib/clang/20/include\" \"-internal-isystem\" \"/include/wasm32-wasi\" \"-internal-isystem\" \"/include\" \"-O0\" \"-Wall\" \"-Wextra\" \"-Wpedantic\" \"-Wformat=2\" \"-std=c11\" \"-ferror-limit\" \"19\" \"-fgnuc-version=4.2.1\" \"-fskip-odr-check-in-gmf\" \"-o\" \"/tmp/main-ee2dbf.o\" \"-x\" \"c\" \"main.c\"\n \"wasm-ld\" \"-m\" \"wasm32\" \"-L/lib/wasm32-wasi\" \"/lib/wasm32-wasi/crt1-command.o\" \"/tmp/main-ee2dbf.o\" \"-lc++\" \"-lc++abi\" \"-lc\" \"lib/clang/20/lib/wasm32-unknown-wasi/libclang_rt.builtins.a\" \"-o\" \"a.out\"\n\n",
+      "diagnosticEntries": [],
+      "ms": 320.6000000005588
+    },
+    {
+      "id": "probe-ubsan",
+      "source": "#include <stdio.h>\n#include <limits.h>\nint main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "COMPILE_ERROR",
+      "compileError": true,
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 -fsanitize=undefined main.c -o main.wasm\nmain.c:3:104: warning: no newline at end of file [-Wnewline-eof]\n    3 | int main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }\n      |                                                                                                        ^\n1 warning generated.\nwasm-ld: error: /tmp/main-1e4317.o: undefined symbol: __ubsan_handle_add_overflow\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 104,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 551.3999999994412
+    },
+    {
+      "id": "probe-ubsan-trap",
+      "source": "#include <stdio.h>\n#include <limits.h>\nint main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "RUNTIME_ERROR",
+      "stdout": "before overflow\n",
+      "stderr": "",
+      "exitCode": null,
+      "files": {},
+      "runtimeError": {
+        "name": "RuntimeError",
+        "message": "unreachable",
+        "stack": "RuntimeError: unreachable\n    at a.out.__original_main (wasm://wasm/a.out-00062dfa:wasm-function[7]:0x272)\n    at a.out._start (wasm://wasm/a.out-00062dfa:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:61524/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:61524/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:61524/worker.js:123:20)"
+      },
+      "debug": {
+        "infoBytes": 28828,
+        "lineBytes": 23231,
+        "nameBytes": 850
+      },
+      "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 -fsanitize=undefined -fsanitize-trap=all main.c -o main.wasm\nmain.c:3:104: warning: no newline at end of file [-Wnewline-eof]\n    3 | int main(void) { volatile int n = INT_MAX; printf(\"before overflow\\n\"); fflush(stdout); return n + 1; }\n      |                                                                                                        ^\n1 warning generated.\n",
+      "diagnosticEntries": [
+        {
+          "file": "main.c",
+          "line": 3,
+          "column": 104,
+          "severity": "warning",
+          "message": "no newline at end of file [-Wnewline-eof]",
+          "option": "-Wnewline-eof"
+        }
+      ],
+      "ms": 619.7999999998137
+    }
+  ],
+  "uiChecks": [
+    {
+      "id": "warning-visible-after-success",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n    4 | }\n      |  ^\nmain.c:2:9: warning: unused variable 'unused' [-Wunused-variable]\n    2 |     int unused = 42;\n      |         ^~~~~~\n2 warnings generated.\n",
+        "output": "Nessun output.",
+        "runtime": "Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.",
+        "status": "Esecuzione completata | 2 warning | exit 0 | 538 ms"
+      }
+    },
+    {
+      "id": "manual-compile-error-visible",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:13: error: expected expression\n    2 |     int n = ;\n      |             ^\nmain.c:4:2: warning: no newline at end of file [-Wnewline-eof]\n    4 | }\n      |  ^\n1 warning and 1 error generated.\n",
+        "output": "Programma non eseguito: correggi gli errori di compilazione.",
+        "runtime": "Esecuzione non avviata.",
+        "status": "Compilazione fallita | 1 warning | 383 ms"
+      }
+    },
+    {
+      "id": "runtime-error-keeps-output",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\nmain.c:2:108: warning: no newline at end of file [-Wnewline-eof]\n    2 | int main(void) { volatile int divisor = 0; printf(\"before crash\\n\"); fflush(stdout); return 10 / divisor; }\n      |                                                                                                            ^\n1 warning generated.\n",
+        "output": "before crash\n",
+        "runtime": "WebAssembly ha interrotto una divisione intera per zero.\n\nRuntimeError: divide by zero\n    at a.out.__original_main (wasm://wasm/a.out-00062d6a:wasm-function[7]:0x248)\n    at a.out._start (wasm://wasm/a.out-00062d6a:wasm-function[6]:0x1b4)\n    at WASI.start (http://127.0.0.1:61524/vendor/wasi/dist/wasi.js:1:252)\n    at browsercc (http://127.0.0.1:61524/worker.js:56:25)\n    at async self.onmessage (http://127.0.0.1:61524/worker.js:123:20)",
+        "status": "Errore durante esecuzione | 1 warning | 544 ms"
+      }
+    },
+    {
+      "id": "recovery-and-output-as-text",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "$ clang -x c -std=c11 -O0 -g -Wall -Wextra -Wpedantic -Wformat=2 -fdiagnostics-show-option -fno-color-diagnostics -fmessage-length=0 main.c -o main.wasm\n",
+        "output": "<b>recovery</b>\n",
+        "runtime": "Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.",
+        "status": "Esecuzione completata | exit 0 | 515 ms"
+      }
+    },
+    {
+      "id": "stop-infinite-program",
+      "status": "PASS",
+      "observed": {
+        "diagnostics": "Nessun messaggio dal compilatore.",
+        "output": "Nessun output.",
+        "runtime": "Arrestato dall’utente",
+        "status": "Arrestato"
+      }
     }
   ],
   "testHost": {

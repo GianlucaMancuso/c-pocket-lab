@@ -8,5 +8,24 @@ export const cases = [
   { id: 'scanf-eof', stdin: '', source: '#include <stdio.h>\nint main(void){int n;printf("%d\\n",scanf("%d",&n)==EOF);return 0;}', expected: '1\n' },
   { id: 'compile-error', source: 'int main(void){ this is invalid C; }', compileError: true },
   { id: 'exit-status', source: 'int main(void){return 7;}', expected: '', exitCode: 7 },
-  { id: 'timeout', source: 'int main(void){volatile unsigned int n=0;for(;;)n++;}', timeout: true }
+  { id: 'timeout', source: 'int main(void){volatile unsigned int n=0;for(;;)n++;}', timeout: true },
+  { id: 'warning-unused-variable', source: 'int main(void) {\n    int unused = 42;\n    return 0;\n}', expected: '',
+    diagnosticsPattern: 'main\\.c:2:\\d+: warning:[\\s\\S]*\\[-Wunused-variable\\][\\s\\S]*\\^', warningOption: '-Wunused-variable' },
+  { id: 'warning-unused-parameter', source: 'int twice(int n, int unused) { return n * 2; }\nint main(void) { return twice(3, 0) - 6; }', expected: '',
+    diagnosticsPattern: 'warning:[\\s\\S]*\\[-Wunused-parameter\\]', warningOption: '-Wunused-parameter' },
+  { id: 'warning-printf-format', source: '#include <stdio.h>\nvoid example(void) { printf("%d", "wrong"); }\nint main(void) { return 0; }', expected: '',
+    diagnosticsPattern: 'main\\.c:2:\\d+: warning:[\\s\\S]*\\[-Wformat', warningOption: '-Wformat' },
+  { id: 'syntax-location', source: 'int main(void) {\n    int n = ;\n    return n;\n}', compileError: true,
+    diagnosticsPattern: 'main\\.c:2:\\d+: error: expected expression[\\s\\S]*\\^' },
+  { id: 'debug-symbols', source: 'int square(int n) { return n * n; }\nint main(void) { return square(3) - 9; }', expected: '', debugInfo: true },
+  { id: 'runtime-divide-zero', source: '#include <stdio.h>\nint main(void) { volatile int divisor = 0; printf("before crash\\n"); fflush(stdout); return 10 / divisor; }',
+    expected: 'before crash\n', runtimeError: true, runtimePattern: 'divide by zero|division by zero' },
+  { id: 'runtime-memory-bounds', source: '#include <stdio.h>\n#include <stdint.h>\nint main(void) { volatile uintptr_t address = 0xffffffffu; printf("before crash\\n"); fflush(stdout); return *(volatile unsigned char *)address; }',
+    expected: 'before crash\n', runtimeError: true, runtimePattern: 'out of bounds|outside.*bounds' }
 ];
+
+// Observations only: these experiments do not advertise sanitizer support.
+export const sanitizerProbes = ['asan', 'ubsan', 'ubsan-trap'].map(probe => ({
+  id: `probe-${probe}`, probe, manual: true,
+  source: '#include <stdio.h>\n#include <limits.h>\nint main(void) { volatile int n = INT_MAX; printf("before overflow\\n"); fflush(stdout); return n + 1; }'
+}));

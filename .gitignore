@@ -3,3 +3,4 @@ node_modules/
 __pycache__/
 .browser-test-profile/
 .chrome-probe/
+dist/

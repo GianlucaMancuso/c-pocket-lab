@@ -1,4 +1,8 @@
-# Verifica su iPhone reale — da eseguire
+# Verifica su iPhone reale
+
+Il prototipo binji precedente ha passato 10/10 casi su iPhone iOS 18.5, online e offline, con standalone true. I report originali sono conservati in reports/. La versione Diagnostica studio v1 deve ancora essere verificata su iPhone con i 17 casi aggiornati e i log separati.
+
+Dopo la pubblicazione dell'aggiornamento, aprire online e verificare la dicitura Diagnostica studio v1. Premere nuovamente Prepara offline con la toolchain selezionata, ricaricare e poi procedere alla prova offline. Per le nuove prove della diagnostica vedere [STUDY-DIAGNOSTICS.md](STUDY-DIAGNOSTICS.md).
 
 ## Preparazione Windows
 
@@ -25,4 +29,4 @@ Tutti i casi richiesti devono passare sul dispositivo reale con rete disabilitat
 
 I file C sono in un filesystem virtuale in RAM. Scrivere/leggere/chiudere `data.txt` durante la stessa esecuzione non dimostra persistenza dopo la chiusura dell'app. stdin è interamente fornito prima dell'avvio: questo prototipo non implementa inserimento interattivo durante un `scanf` già in attesa. stderr binji è mescolato a stdout dal runtime upstream; non è un terminale POSIX completo.
 
-L'icona SVG è provvisoria: verificare come iOS la presenta. Asset PNG/apple-touch-icon e UX definitiva restano fuori da questa fase. Nessuna verifica iPhone è stata eseguita in questa sessione.
+L'icona SVG è provvisoria: verificare come iOS la presenta. Asset PNG/apple-touch-icon e UX definitiva restano fuori da questa fase. I risultati ricevuti dal dispositivo riguardano binji e i 10 casi originali; browsercc e le nuove funzioni non si considerano verificati su iPhone.

@@ -1,4 +1,6 @@
 import { runSuite, runProgram } from './runner.js';
+import { plainLog, runtimeExplanation } from './diagnostics.js';
+import { prepareOffline } from './offline.js';
 const status = document.querySelector('#status');
 let lastReport;
 let controller;
@@ -10,20 +12,33 @@ document.querySelector('#compile').onclick = async () => {
   controller = new AbortController();
   document.querySelector('#stop').disabled = false;
   const output = document.querySelector('#output');
+  const diagnostics = document.querySelector('#diagnostics');
+  const runtime = document.querySelector('#runtime-errors');
+  diagnostics.textContent = 'Compilazione locale in corso...';
+  runtime.textContent = '';
   output.textContent = 'Compilazione locale…';
   try {
     const result = await runProgram(document.querySelector('#engine').value,
       document.querySelector('#source').value, document.querySelector('#stdin').value,
       { signal: controller.signal, onPhase: phase => { status.textContent = phase === 'compile' ? 'Compilazione locale…' : 'Esecuzione locale…'; } });
-    output.textContent = result.compileError ? result.diagnostics :
-      (result.stdout || '') + (result.stderr || '') + (result.reason ? '\n' + result.reason : '');
-    status.textContent = `${result.status}${result.exitCode !== undefined ? ' · exit ' + result.exitCode : ''}${result.ms ? ' · ' + Math.round(result.ms) + ' ms' : ''}`;
-  } catch (error) { output.textContent = String(error); }
+    diagnostics.textContent = plainLog(result.diagnostics || 'Nessun messaggio dal compilatore.');
+    output.textContent = (result.stdout || '') + (result.stderr || '') ||
+      (result.compileError ? 'Programma non eseguito: correggi gli errori di compilazione.' : 'Nessun output.');
+    runtime.textContent = result.runtimeError ?
+      runtimeExplanation(result.runtimeError) + '\n\n' + plainLog(result.runtimeError.stack) :
+      result.reason ? plainLog(result.reason) : result.compileError ? 'Esecuzione non avviata.' : 'Nessun errore runtime rilevato. Questo non dimostra assenza di errori nel C.';
+    const labels = { OK: 'Esecuzione completata', COMPILE_ERROR: 'Compilazione fallita', RUNTIME_ERROR: 'Errore durante esecuzione',
+      EXIT: 'Programma terminato con codice non zero', TIMEOUT: 'Tempo limite raggiunto', STOPPED: 'Arrestato', ERROR: 'Errore della toolchain', BLOCKED: 'Toolchain non disponibile' };
+    const warningCount = result.diagnosticEntries?.filter(d => d.severity === 'warning').length || 0;
+    status.textContent = `${labels[result.status] || result.status}${warningCount ? ' | ' + warningCount + ' warning' : ''}${result.exitCode != null ? ' | exit ' + result.exitCode : ''}${result.ms ? ' | ' + Math.round(result.ms) + ' ms' : ''}`;
+  } catch (error) { runtime.textContent = plainLog(error.stack || error); }
   finally { busy(false); document.querySelector('#stop').disabled = true; controller = undefined; }
 };
 document.querySelector('#stop').onclick = () => controller?.abort();
 document.querySelector('#run').onclick = async () => {
   busy(true);
+  lastReport = undefined;
+  document.querySelector('#export').disabled = true;
   status.textContent = '';
   try {
     lastReport = await runSuite(document.querySelector('#engine').value, r => {
@@ -38,13 +53,11 @@ document.querySelector('#export').onclick = () => {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
 document.querySelector('#offline').onclick = async () => {
+  busy(true);
   try {
-    if (!('serviceWorker' in navigator)) throw new Error('Service worker non disponibile: usare HTTPS o localhost.');
-    await navigator.serviceWorker.register('./sw.js', { scope: './' });
-    const registration = await navigator.serviceWorker.ready;
-    const channel = new MessageChannel();
-    channel.port1.onmessage = ({ data }) => { status.textContent = data.message; };
-    registration.active.postMessage({ command: 'prepare', engine: document.querySelector('#engine').value }, [channel.port2]);
     status.textContent = 'Acquisizione cache locale in corso…';
+    const result = await prepareOffline(document.querySelector('#engine').value);
+    status.textContent = result.message;
   } catch (error) { status.textContent = String(error); }
+  finally { busy(false); }
 };

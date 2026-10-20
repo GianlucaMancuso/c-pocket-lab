@@ -1,0 +1,141 @@
+{
+  "engine": "binji",
+  "date": "2026-10-20T06:27:12.181Z",
+  "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1",
+  "standalone": true,
+  "online": false,
+  "results": [
+    {
+      "id": "printf",
+      "source": "#include <stdio.h>\nint main(void){printf(\"hello %d\\n\",856289);return 0;}",
+      "stdin": "",
+      "expected": "hello 856289\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "hello 856289\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "ms": 701
+    },
+    {
+      "id": "scanf",
+      "source": "#include <stdio.h>\nint main(void){int n;char s[16];if(scanf(\"%d %15s\",&n,s)!=2)return 1;printf(\"%d %s\\n\",n+1,s);return 0;}",
+      "stdin": "17 lab\n",
+      "expected": "18 lab\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "18 lab\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "ms": 793
+    },
+    {
+      "id": "loops-functions-arrays",
+      "source": "#include <stdio.h>\nint sum(const int *a,int n){int s=0;for(int i=0;i<n;i++)s+=a[i];return s;}\nint main(void){int a[]={2,4,6};int n=0;while(n<3)n++;do{n--;}while(n>3);printf(\"%d %d\\n\",sum(a,3),n);return 0;}",
+      "stdin": "",
+      "expected": "12 2\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "12 2\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "ms": 717
+    },
+    {
+      "id": "strings-pointers-struct",
+      "source": "#include <stdio.h>\n#include <string.h>\nstruct Item{int value;char name[16];};\nint main(void){struct Item a={7,\"pocket\"};struct Item *p=&a;char b[32];strcpy(b,p->name);strcat(b,\" C\");p->value+=2;printf(\"%s %d %lu\\n\",b,a.value,(unsigned long)strlen(b));return 0;}",
+      "stdin": "",
+      "expected": "pocket C 9 8\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "pocket C 9 8\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "ms": 763
+    },
+    {
+      "id": "malloc-free",
+      "source": "#include <stdio.h>\n#include <stdlib.h>\nint main(void){for(int k=0;k<32;k++){int *p=malloc(256*sizeof *p);if(!p)return 1;for(int i=0;i<256;i++)p[i]=i;if(p[255]!=255)return 2;free(p);}printf(\"alloc ok\\n\");return 0;}",
+      "stdin": "",
+      "expected": "alloc ok\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "alloc ok\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "ms": 770
+    },
+    {
+      "id": "files",
+      "source": "#include <stdio.h>\n#include <string.h>\nint main(void){FILE *f=fopen(\"data.txt\",\"w\");if(!f)return 1;if(fprintf(f,\"%d %s\\n\",73,\"pocket\")!=10)return 2;if(fclose(f))return 3;f=fopen(\"data.txt\",\"r\");if(!f)return 4;int n=0;char s[16];if(fscanf(f,\"%d %15s\",&n,s)!=2)return 5;if(fclose(f))return 6;if(n!=73||strcmp(s,\"pocket\"))return 7;printf(\"%d %s\\n\",n,s);return 0;}",
+      "stdin": "",
+      "expected": "73 pocket\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "73 pocket\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {
+        "data.txt": "73 pocket\n"
+      },
+      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "ms": 731
+    },
+    {
+      "id": "scanf-eof",
+      "source": "#include <stdio.h>\nint main(void){int n;printf(\"%d\\n\",scanf(\"%d\",&n)==EOF);return 0;}",
+      "stdin": "",
+      "expected": "1\n",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "stdout": "1\n",
+      "stderr": "",
+      "exitCode": 0,
+      "files": {},
+      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "ms": 746
+    },
+    {
+      "id": "compile-error",
+      "source": "int main(void){ this is invalid C; }",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "compileError": true,
+      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\u001b[1mmain.c:1:17: \u001b[0m\u001b[0;1;31merror: \u001b[0m\u001b[1muse of undeclared identifier 'this'\u001b[0m\nint main(void){ this is invalid C; }\n\u001b[0;1;32m                ^\n\u001b[0m1 error generated.\n\u001b[91mError: process exited with code 1.\u001b[0m\nError: process exited with code 1.",
+      "ms": 347
+    },
+    {
+      "id": "exit-status",
+      "source": "int main(void){return 7;}",
+      "stdin": "",
+      "expected": "",
+      "expectedExitCode": 7,
+      "status": "PASS",
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 7,
+      "files": {},
+      "diagnostics": "\u001b[1;93m>\u001b[0m Untarring ./vendor/binji/sysroot.tar... done.\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/clang... done.\n\u001b[1;93m>\u001b[0m clang -cc1 -emit-obj -disable-free -isysroot / -internal-isystem /include/c++/v1 -internal-isystem /include -internal-isystem /lib/clang/8.0.1/include -ferror-limit 19 -fmessage-length 80 -fcolor-diagnostics -O0 -o main.o -x c -std=c11 main.c\n\n\u001b[1;93m>\u001b[0m Fetching and compiling ./vendor/binji/lld... done.\n\u001b[1;93m>\u001b[0m wasm-ld --no-threads --export-dynamic -z stack-size=1048576 -Llib/wasm32-wasi lib/wasm32-wasi/crt1.o main.o -lc -lc++ -lc++abi -lcanvas -o main.wasm\n\n",
+      "ms": 617
+    },
+    {
+      "id": "timeout",
+      "source": "int main(void){volatile unsigned int n=0;for(;;)n++;}",
+      "stdin": "",
+      "expectedExitCode": 0,
+      "status": "PASS",
+      "reason": "execution timeout"
+    }
+  ]
+}

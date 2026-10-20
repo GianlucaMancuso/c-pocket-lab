@@ -1,0 +1,66 @@
+{
+  "platform": "win32",
+  "mode": "online",
+  "serverStopped": false,
+  "checks": [
+    {
+      "id": "production-before-preview",
+      "status": "PASS",
+      "observed": {
+        "output": "production preserved\n",
+        "controller": "http://127.0.0.1:56103/c-pocket-lab/sw.js",
+        "previewBanner": false
+      }
+    },
+    {
+      "id": "preview-scope-cache-and-install-identity",
+      "status": "PASS",
+      "observed": {
+        "root": "http://127.0.0.1:56103/c-pocket-lab/",
+        "preview": "http://127.0.0.1:56103/c-pocket-lab/preview/",
+        "controller": "http://127.0.0.1:56103/c-pocket-lab/preview/sw.js",
+        "banner": true,
+        "manifest": {
+          "id": "./",
+          "name": "C Pocket Lab - Prova diagnostica",
+          "short_name": "C Lab Prova",
+          "start_url": "./",
+          "scope": "./",
+          "display": "standalone",
+          "background_color": "#ffffff",
+          "theme_color": "#16324f",
+          "icons": [
+            {
+              "src": "icon.svg",
+              "sizes": "any",
+              "type": "image/svg+xml",
+              "purpose": "any"
+            }
+          ]
+        },
+        "caches": [
+          "c-pocket-phase1-v2",
+          "c-pocket-study-diagnostics-v1:/c-pocket-lab/preview/"
+        ]
+      }
+    },
+    {
+      "id": "original-cache-unchanged",
+      "status": "PASS"
+    },
+    {
+      "id": "production-after-preview",
+      "status": "PASS",
+      "observed": {
+        "output": "production preserved\n",
+        "controller": "http://127.0.0.1:56103/c-pocket-lab/sw.js",
+        "previewBanner": false
+      }
+    },
+    {
+      "id": "production-files-unchanged",
+      "status": "PASS",
+      "productionCommit": "a5ff1b9da06cd40e01076efb372379f76cb2775a"
+    }
+  ]
+}

@@ -11,7 +11,11 @@ for (const dir of ['public', 'scripts', 'public/tests']) {
   }
 }
 if (new Set(cases.map(c => c.id)).size !== cases.length) fail('ID test duplicati');
-if (cases.length !== 10) fail('Suite incompleta');
+for (const id of ['printf', 'scanf', 'loops-functions-arrays', 'strings-pointers-struct', 'malloc-free', 'files',
+  'scanf-eof', 'compile-error', 'exit-status', 'timeout', 'warning-unused-variable', 'warning-unused-parameter',
+  'warning-printf-format', 'syntax-location', 'debug-symbols', 'runtime-divide-zero', 'runtime-memory-bounds']) {
+  if (!cases.some(c => c.id === id)) fail('Caso mancante: ' + id);
+}
 console.log(`PASS: sintassi JavaScript e inventario di ${cases.length} casi; nessuna compilazione C effettuata da questo controllo.`);
 if (!mode) {
   try {
